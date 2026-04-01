@@ -24,6 +24,7 @@
         <input type="email" id="email" placeholder="Рабочий Email">
         <button id="mainBtn">Опубликовать в облако</button>
     </div>
+    <input type="text" id="search" placeholder="🔍 Поиск по имени..." style="width:100%; max-width:500px; margin-top:10px; padding:10px;">
 
     <div id="feed" style="width: 100%; max-width: 500px;"></div>
 
@@ -47,6 +48,8 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        let allPosts = [];
 
         // ✅ ВАЛИДАЦИЯ
 function validateForm(name, email) {
@@ -123,11 +126,46 @@ window.editName = async (id, oldName) => {
             btn.disabled = false;
         };
 
+        function renderPosts(posts) {
+    const feed = document.getElementById('feed');
+    feed.innerHTML = "";
+
+    posts.forEach((item) => {
+        const date = item.timestamp ? item.timestamp.toDate().toLocaleString() : '...';
+
+        feed.innerHTML += `
+            <div class="post">
+                <span class="time">${date}</span>
+                <b>${item.name}</b>
+                <p style="margin: 5px 0;">${item.email}</p>
+
+                <button class="like-btn" onclick="processLike('${item.id}')">
+                    👍 ${item.likes || 0}
+                </button>
+
+                <button onclick="editName('${item.id}', '${item.name}')">✏️</button>
+                <button onclick="deletePost('${item.id}')">🗑</button>
+            </div>
+        `;
+    });
+}
+
         // МЕТОД: REAL-TIME СИНХРОНИЗАЦИЯ
         const q = query(collection(db, "requests"), orderBy("timestamp", "desc"));
         onSnapshot(q, (snapshot) => {
             const feed = document.getElementById('feed');
-            feed.innerHTML = "";
+            onSnapshot(q, (snapshot) => {
+            allPosts = [];
+
+            snapshot.forEach((doc) => {
+            allPosts.push({
+            id: doc.id,
+            ...doc.data()
+            });
+            });
+
+            renderPosts(allPosts);
+            });
             
             snapshot.forEach((doc) => {
                 const data = doc.data();
@@ -152,6 +190,22 @@ window.editName = async (id, oldName) => {
                 `;
             });
         });
+
+        document.getElementById('search').addEventListener('input', (e) => {
+    const value = e.target.value.toLowerCase().trim();
+
+    if (!value) {
+        renderPosts(allPosts);
+        return;
+    }
+
+    const filtered = allPosts.filter(post =>
+        post.name.toLowerCase().includes(value)
+    );
+
+    renderPosts(filtered);
+});
+        
     </script>
 </body>
 </html>
