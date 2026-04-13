@@ -2,38 +2,57 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Firebase Auth & Firestore</title>
+    <title>Облачное приложение</title>
     <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; background: #f0f2f5; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
-        #userInfo { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; margin: 0; }
+        
+        /* Блок кнопки входа (белая карточка) */
+        .auth-container { background: white; width: 100%; max-width: 550px; padding: 30px; border-radius: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: center; margin-bottom: 20px; }
+        #loginBtn { background: #007bff; color: white; border: none; padding: 12px 0; width: 100%; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer; }
+        
+        /* Профиль пользователя после входа */
+        #userInfo { background: white; width: 100%; max-width: 550px; padding: 15px 30px; border-radius: 15px; display: none; align-items: center; gap: 15px; margin-bottom: 20px; box-sizing: border-box; }
         #userPhoto { width: 40px; height: 40px; border-radius: 50%; }
-        .post { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; width: 100%; max-width: 400px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        #logoutBtn { margin-left: auto; background: none; border: 1px solid #ddd; padding: 5px 15px; border-radius: 5px; cursor: pointer; }
+
+        /* Форма сообщения */
+        #messageForm { background: white; width: 100%; max-width: 550px; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-sizing: border-box; }
+        textarea { width: 100%; height: 80px; border: 1px solid #eee; border-radius: 8px; padding: 10px; resize: none; margin-bottom: 10px; box-sizing: border-box; }
+        #mainBtn { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; }
+
+        /* Посты (как на скриншоте) */
+        .post { background: white; width: 100%; max-width: 550px; border-radius: 12px; margin-top: 15px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); overflow: hidden; }
+        .post-content { padding: 20px; position: relative; }
         .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .post-avatar { width: 30px; height: 30px; border-radius: 50%; }
-        .Time { font-size: 12px; color: gray; margin-left: auto; }
-        textarea { width: 100%; height: 80px; margin-bottom: 10px; padding: 10px; box-sizing: border-box; }
-        button { cursor: pointer; padding: 8px 16px; border: none; border-radius: 4px; background: #007bff; color: white; }
-        #logoutBtn { background: #dc3545; margin-left: auto; }
-        .Like-btn { background: none; border: 1px solid #ddd; color: #333; border-radius: 20px; padding: 4px 12px; }
+        .post-avatar { width: 35px; height: 35px; border-radius: 50%; }
+        .post-name { font-weight: 700; color: #1c1e21; font-size: 15px; }
+        .post-time { color: #65676b; font-size: 12px; margin-left: auto; }
+        .post-text { margin: 10px 0; color: #050505; font-size: 15px; }
+        
+        /* Нижняя панель лайка (серая полоса) */
+        .post-footer { background: #f8f9fa; padding: 8px; display: flex; justify-content: center; border-top: 1px solid #f0f2f5; }
+        .like-btn { background: none; border: none; cursor: pointer; font-size: 16px; color: #65676b; transition: 0.2s; }
+        .like-btn:hover { transform: scale(1.2); }
     </style>
 </head>
 <body>
 
-    <button id="loginBtn">Войти через Google</button>
+    <div id="authBox" class="auth-container">
+        <button id="loginBtn">Войти через Google</button>
+    </div>
 
-    <div id="userInfo" style="display: none; width: 100%; max-width: 400px;">
-        <img id="userPhoto" src="" alt="avatar">
+    <div id="userInfo">
+        <img id="userPhoto" src="" alt="">
         <b id="userName"></b>
         <button id="logoutBtn">Выйти</button>
     </div>
 
-    <div id="messageForm" class="container" style="display: none;">
-        <textarea id="content" placeholder="Введите сообщение..."></textarea>
-        <button id="mainBtn">Отправить</button>
+    <div id="messageForm" style="display: none;">
+        <textarea id="content" placeholder="Что у вас нового?"></textarea>
+        <button id="mainBtn">Опубликовать</button>
     </div>
 
-    <div id="Feed" style="width: 100%; max-width: 400px;"></div>
+    <div id="Feed" style="width: 100%; max-width: 550px;"></div>
 
     <script type="module">
         import { initializeApp } from "https://gstatic.com";
@@ -54,32 +73,26 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        const loginBtn = document.getElementById('loginBtn');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const userInfo = document.getElementById('userInfo');
-        const messageForm = document.getElementById('messageForm');
-
-        loginBtn.onclick = () => signInWithPopup(auth, provider);
-        logoutBtn.onclick = () => signOut(auth);
-
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                loginBtn.style.display = "none";
-                userInfo.style.display = "flex";
-                messageForm.style.display = "block";
+                document.getElementById('authBox').style.display = "none";
+                document.getElementById('userInfo').style.display = "flex";
+                document.getElementById('messageForm').style.display = "block";
                 document.getElementById('userName').innerText = user.displayName;
                 document.getElementById('userPhoto').src = user.photoURL;
             } else {
-                loginBtn.style.display = "block";
-                userInfo.style.display = "none";
-                messageForm.style.display = "none";
+                document.getElementById('authBox').style.display = "flex";
+                document.getElementById('userInfo').style.display = "none";
+                document.getElementById('messageForm').style.display = "none";
             }
         });
 
+        document.getElementById('loginBtn').onclick = () => signInWithPopup(auth, provider);
+        document.getElementById('logoutBtn').onclick = () => signOut(auth);
+
         document.getElementById('mainBtn').onclick = async () => {
             const text = document.getElementById('content').value;
-            if (!text) return;
-            
+            if (!text.trim()) return;
             await addDoc(collection(db, "requests"), {
                 name: auth.currentUser.displayName,
                 photo: auth.currentUser.photoURL,
@@ -91,9 +104,7 @@
         };
 
         window.processLike = async (id) => {
-            await updateDoc(doc(db, "requests", id), {
-                likes: increment(1)
-            });
+            await updateDoc(doc(db, "requests", id), { likes: increment(1) });
         };
 
         const q = query(collection(db, "requests"), orderBy("timestamp", "desc"));
@@ -102,23 +113,27 @@
             Feed.innerHTML = "";
             snapshot.forEach((doc) => {
                 const data = doc.data();
+                const time = data.timestamp ? data.timestamp.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'}) : '...';
+                
                 Feed.innerHTML += `
                     <div class="post">
-                        <div class="post-header">
-                            <img src="${data.photo || 'https://placeholder.com'}" class="post-avatar">
-                            <b>${data.name}</b>
-                            <span class="Time">${data.timestamp ? data.timestamp.toDate().toLocaleTimeString() : '...'}</span>
+                        <div class="post-content">
+                            <div class="post-header">
+                                <img src="${data.photo || 'https://placeholder.com'}" class="post-avatar">
+                                <span class="post-name">${data.name}</span>
+                                <span class="post-time">${time}</span>
+                            </div>
+                            <div class="post-text">${data.text}</div>
                         </div>
-                        <p>${data.text || data.email}</p>
-                        <button class="Like-btn" onclick="processLike('${doc.id}')">
-                            👍 ${data.likes || 0}
-                        </button>
+                        <div class="post-footer">
+                            <button class="like-btn" onclick="processLike('${doc.id}')">
+                                🔥 ${data.likes || 0}
+                            </button>
+                        </div>
                     </div>
                 `;
             });
         });
-
-        window.db = db; // Для доступа к базе данных
     </script>
 </body>
 </html>
