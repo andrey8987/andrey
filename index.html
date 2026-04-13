@@ -2,65 +2,44 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>BaaS - Project</title>
+    <title>Firebase Auth & Firestore</title>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f4f7f6; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .container { width: 100%; max-width: 500px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        
-        /* Стили из кода учителя */
-        #userInfo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; width: 100%; max-width: 500px; }
-        #userPhoto { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .post { background: #fff; border: 1px solid #eaeaea; padding: 15px; margin-top: 15px; border-radius: 8px; width: 100%; max-width: 500px; }
-        .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; background: #f0f2f5; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        #userInfo { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        #userPhoto { width: 40px; height: 40px; border-radius: 50%; }
+        .post { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; width: 100%; max-width: 400px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
         .post-avatar { width: 30px; height: 30px; border-radius: 50%; }
-        .time { font-size: 11px; color: #999; margin-left: auto; }
-        
-        input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
-        button { cursor: pointer; transition: 0.3s; border: none; border-radius: 6px; font-weight: 600; }
-        #mainBtn { background: #007bff; color: white; padding: 12px; width: 100%; }
-        #loginBtn { background: #4285F4; color: white; padding: 10px 25px; font-size: 16px; }
-        #logoutBtn { background: #eee; color: #555; padding: 5px 12px; font-size: 12px; }
-        .like-btn { background: #f8f9fa; padding: 5px 12px; border-radius: 20px; font-size: 14px; border: 1px solid #eee; }
+        .Time { font-size: 12px; color: gray; margin-left: auto; }
+        textarea { width: 100%; height: 80px; margin-bottom: 10px; padding: 10px; box-sizing: border-box; }
+        button { cursor: pointer; padding: 8px 16px; border: none; border-radius: 4px; background: #007bff; color: white; }
+        #logoutBtn { background: #dc3545; margin-left: auto; }
+        .Like-btn { background: none; border: 1px solid #ddd; color: #333; border-radius: 20px; padding: 4px 12px; }
     </style>
 </head>
 <body>
 
-    <!-- Вход (как у учителя) -->
     <button id="loginBtn">Войти через Google</button>
 
-    <!-- Профиль пользователя -->
-    <div id="userInfo" style="display: none;">
+    <div id="userInfo" style="display: none; width: 100%; max-width: 400px;">
         <img id="userPhoto" src="" alt="avatar">
-        <div>
-            <b id="userName"></b><br>
-            <button id="logoutBtn">Выйти</button>
-        </div>
+        <b id="userName"></b>
+        <button id="logoutBtn">Выйти</button>
     </div>
 
-    <!-- Форма отправки (messageForm из кода учителя) -->
     <div id="messageForm" class="container" style="display: none;">
-        <h3>Новая запись</h3>
-        <textarea id="content" placeholder="О чем вы думаете?"></textarea>
-        <button id="mainBtn">Опубликовать в облако</button>
+        <textarea id="content" placeholder="Введите сообщение..."></textarea>
+        <button id="mainBtn">Отправить</button>
     </div>
 
-    <!-- Твой поиск -->
-    <input type="text" id="search" placeholder="🔍 Поиск по имени автора..." style="width:100%; max-width:500px; margin-top:20px;">
-
-    <!-- Лента -->
-    <div id="feed" style="width: 100%; max-width: 500px;"></div>
+    <div id="Feed" style="width: 100%; max-width: 400px;"></div>
 
     <script type="module">
         import { initializeApp } from "https://gstatic.com";
-        import { 
-            getFirestore, collection, addDoc, query, orderBy, onSnapshot, 
-            serverTimestamp, updateDoc, doc, increment 
-        } from "https://gstatic.com";
-        import { 
-            getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged 
-        } from "https://gstatic.com";
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, updateDoc, doc, increment } from "https://gstatic.com";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://gstatic.com";
 
-        // Твоя конфигурация
         const firebaseConfig = {
             apiKey: "AIzaSyCMsArqXBXjYxljZs-1tX0kuOUSIkDDnZA",
             authDomain: "://firebaseapp.com",
@@ -76,17 +55,20 @@
         const provider = new GoogleAuthProvider();
 
         const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
         const userInfo = document.getElementById('userInfo');
         const messageForm = document.getElementById('messageForm');
 
-        // Управление доступом (onAuthStateChanged)
+        loginBtn.onclick = () => signInWithPopup(auth, provider);
+        logoutBtn.onclick = () => signOut(auth);
+
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 loginBtn.style.display = "none";
                 userInfo.style.display = "flex";
                 messageForm.style.display = "block";
-                document.getElementById("userName").innerText = user.displayName;
-                document.getElementById("userPhoto").src = user.photoURL;
+                document.getElementById('userName').innerText = user.displayName;
+                document.getElementById('userPhoto').src = user.photoURL;
             } else {
                 loginBtn.style.display = "block";
                 userInfo.style.display = "none";
@@ -94,59 +76,41 @@
             }
         });
 
-        loginBtn.onclick = () => signInWithPopup(auth, provider);
-        document.getElementById('logoutBtn').onclick = () => signOut(auth);
-
-        // Публикация
         document.getElementById('mainBtn').onclick = async () => {
             const text = document.getElementById('content').value;
-            if (!text.trim()) return alert("Напишите что-нибудь!");
-
-            try {
-                await addDoc(collection(db, "requests"), {
-                    name: auth.currentUser.displayName,
-                    email: auth.currentUser.email,
-                    photo: auth.currentUser.photoURL,
-                    text: text,
-                    likes: 0,
-                    timestamp: serverTimestamp()
-                });
-                document.getElementById('content').value = "";
-            } catch (e) {
-                alert("Ошибка: проверьте правила Firestore!");
-            }
+            if (!text) return;
+            
+            await addDoc(collection(db, "requests"), {
+                name: auth.currentUser.displayName,
+                photo: auth.currentUser.photoURL,
+                text: text,
+                likes: 0,
+                timestamp: serverTimestamp()
+            });
+            document.getElementById('content').value = "";
         };
 
-        // Лайки
         window.processLike = async (id) => {
-            if (!auth.currentUser) return alert("Войдите, чтобы ставить лайки");
-            await updateDoc(doc(db, "requests", id), { likes: increment(1) });
+            await updateDoc(doc(db, "requests", id), {
+                likes: increment(1)
+            });
         };
 
-        // Рендер ленты (как в скриншоте учителя)
-        let allPosts = [];
         const q = query(collection(db, "requests"), orderBy("timestamp", "desc"));
-
         onSnapshot(q, (snapshot) => {
-            const feed = document.getElementById('feed');
-            feed.innerHTML = "";
-            allPosts = [];
-
+            const Feed = document.getElementById('Feed');
+            Feed.innerHTML = "";
             snapshot.forEach((doc) => {
                 const data = doc.data();
-                allPosts.push({ id: doc.id, ...data });
-
-                const time = data.timestamp ? data.timestamp.toDate().toLocaleTimeString() : '...';
-
-                feed.innerHTML += `
+                Feed.innerHTML += `
                     <div class="post">
                         <div class="post-header">
                             <img src="${data.photo || 'https://placeholder.com'}" class="post-avatar">
                             <b>${data.name}</b>
-                            <span class="time">${time}</span>
+                            <span class="Time">${data.timestamp ? data.timestamp.toDate().toLocaleTimeString() : '...'}</span>
                         </div>
                         <p>${data.text || data.email}</p>
-                        <button class="like-btn" onclick="processLike('${doc.id}')">
+                        <button class="Like-btn" onclick="processLike('${doc.id}')">
                             👍 ${data.likes || 0}
                         </button>
                     </div>
@@ -154,15 +118,7 @@
             });
         });
 
-        // Твой поиск
-        document.getElementById('search').oninput = (e) => {
-            const val = e.target.value.toLowerCase();
-            const posts = document.querySelectorAll('.post');
-            posts.forEach(p => {
-                const author = p.querySelector('b').innerText.toLowerCase();
-                p.style.display = author.includes(val) ? "block" : "none";
-            });
-        };
+        window.db = db; // Для доступа к базе данных
     </script>
 </body>
 </html>
