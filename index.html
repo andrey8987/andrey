@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testogram</title>
+    <title>Andreygram</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-    --primary: #0088cc; /* Telegram синий */
-    --primary-hover: #007ab8;
-    --bg: #e5e5e5;
+    --primary: #5865F2; /* фиолет как Discord */
+    --primary-hover: #4752c4;
+    --bg: #f5f7fb;
     --card: #ffffff;
-    --text-main: #222222;
-    --text-muted: #888888;
-    --border: #d0d0d0;
-    --radius: 12px;
-    --shadow: rgba(0, 0, 0, 0.05);
+    --text-main: #1f2328;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --radius: 14px;
+    --shadow: rgba(0, 0, 0, 0.06);
+}
+
+/* 🌙 ТЁМНАЯ (фиолетовая как Discord) */
+body.dark {
+    --primary: #5865F2;
+    --primary-hover: #4752c4;
+    --bg: #0f1115;
+    --card: #1a1d24;
+    --text-main: #e6e9ef;
+    --text-muted: #9aa4b2;
+    --border: #2a2f3a;
+    --shadow: rgba(0, 0, 0, 0.8);
 }
 
 body {
@@ -26,245 +38,188 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-}
-
-/* Тёмная тема */
-body.dark {
-    --primary: #1e90ff;
-    --primary-hover: #1c7cd6;
-    --bg: #121212;
-    --card: #1e1e1e;
-    --text-main: #e0e0e0;
-    --text-muted: #aaaaaa;
-    --border: #333333;
-    --shadow: rgba(0, 0, 0, 0.7);
 }
 
 /* Хедер */
 .top-nav {
     width: 100%;
     background: var(--card);
-    padding: 12px 0;
-    display: flex;
-    justify-content: center;
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 1px 3px var(--shadow);
 }
 
 .nav-content {
-    width: 100%;
     max-width: 1300px;
+    margin: 0 auto;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 24px;
-    box-sizing: border-box;
 }
 
 .logo {
     font-weight: 700;
-    font-size: 22px;
+    font-size: 20px;
     color: var(--primary);
 }
 
-/* 🔥 НОВЫЙ ЛЕЙАУТ */
+/* 🔥 ЛЕЙАУТ (РОВНЫЙ) */
 .main-layout {
     display: grid;
-    grid-template-columns: 300px 1fr 280px;
+    grid-template-columns: 280px 1fr 300px;
     gap: 20px;
     width: 100%;
     max-width: 1300px;
     padding: 20px;
-    box-sizing: border-box;
-    align-items: start;
-    min-height: calc(100vh - 60px);
 }
 
-/* Перестановка */
-.chat-sidebar {
-    order: 1;
-}
+/* порядок */
+.chat-sidebar { order: 1; }
+.feed-container { order: 2; }
+.sidebar { order: 3; }
 
-.feed-container {
-    order: 2;
-}
-
-.sidebar {
-    order: 3;
-}
-
-/* Контейнеры */
+/* контейнеры */
 .container {
     background: var(--card);
-    padding: 20px;
+    padding: 18px;
     border-radius: var(--radius);
-    box-shadow: 0 2px 8px var(--shadow);
     border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 4px 14px var(--shadow);
 }
 
-/* Липкость */
+/* фиксы */
 .chat-sidebar .container,
 .sidebar .container {
     position: sticky;
     top: 80px;
 }
 
-/* Профиль */
+/* профиль */
 .user-card {
     text-align: center;
 }
 
 .user-avatar {
-    width: 88px;
-    height: 88px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 3px solid var(--bg);
-    box-shadow: 0 4px 8px var(--shadow);
-    object-fit: cover;
-    margin: 0 auto 16px;
+    margin-bottom: 12px;
 }
 
-#userName {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.user-card p {
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 14px;
-}
-
-/* Список пользователей */
+/* пользователи */
 .user-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-radius: var(--radius);
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
     cursor: pointer;
     transition: 0.2s;
-    font-weight: 500;
 }
 
 .user-item:hover {
-    background-color: rgba(0,136,204,0.1);
+    background: rgba(88,101,242,0.1);
 }
 
 .user-item.active {
-    background-color: var(--primary);
+    background: var(--primary);
     color: white;
-    font-weight: 700;
 }
 
 .user-item img {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
 }
 
-/* Заголовки */
+/* заголовки */
 .section-title {
+    font-size: 16px;
     font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
-/* Лента */
+/* лента */
 .feed-container {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* Посты */
+/* посты */
 .post {
-    background: var(--card);
-    padding: 16px 20px;
+    padding: 16px;
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    box-shadow: 0 1px 4px var(--shadow);
+    background: var(--card);
     transition: 0.2s;
 }
 
 .post:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 14px var(--shadow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow);
 }
 
 .post-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .author-name {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary);
 }
 
 .post-time {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-muted);
-}
-
-.post-content {
-    margin-bottom: 12px;
 }
 
 .post img {
     width: 100%;
-    border-radius: 14px;
+    border-radius: 12px;
+    margin-top: 10px;
 }
 
-/* Реакции */
+/* реакции */
 .reactions {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     margin-top: 10px;
 }
 
 .react-btn {
+    background: none;
     border: none;
-    background: transparent;
     cursor: pointer;
-    display: flex;
-    gap: 6px;
-    font-weight: 600;
     color: var(--text-muted);
-    transition: 0.2s;
+    font-weight: 600;
 }
 
 .react-btn:hover {
     color: var(--primary);
 }
 
-/* Чат */
+/* чат */
 #chatMessages {
-    height: 350px;
+    height: 360px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 12px;
+    gap: 8px;
+    padding: 10px;
     background: var(--bg);
-    border-radius: 14px;
+    border-radius: 10px;
     border: 1px solid var(--border);
 }
 
 .msg {
-    padding: 10px 16px;
-    border-radius: 18px;
-    max-width: 75%;
-    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    max-width: 70%;
 }
 
 .msg-me {
@@ -276,15 +231,13 @@ body.dark {
 .msg-them {
     background: var(--card);
     align-self: flex-start;
-    box-shadow: 0 1px 3px var(--shadow);
 }
 
-/* Инпуты */
+/* инпут */
 input[type="text"] {
     width: 100%;
-    padding: 14px;
-    margin: 10px 0;
-    border-radius: var(--radius);
+    padding: 12px;
+    border-radius: 10px;
     border: 1px solid var(--border);
     background: var(--card);
 }
@@ -294,14 +247,13 @@ input:focus {
     outline: none;
 }
 
-/* Кнопки */
+/* кнопки */
 .btn-primary {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 14px;
-    border-radius: var(--radius);
-    font-weight: 700;
+    padding: 12px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -309,24 +261,16 @@ input:focus {
     background: var(--primary-hover);
 }
 
-/* Скролл боковых */
+/* скролл */
 .sidebar, .chat-sidebar {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 96px);
+    height: calc(100vh - 90px);
     overflow-y: auto;
 }
 
-/* Адаптив */
+/* адаптив */
 @media (max-width: 1100px) {
     .main-layout {
         grid-template-columns: 1fr;
-    }
-
-    .chat-sidebar,
-    .feed-container,
-    .sidebar {
-        order: unset;
     }
 }
     </style>
