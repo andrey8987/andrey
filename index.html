@@ -29,7 +29,8 @@ body {
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
 }
-        /* Тёмная тема */
+
+/* Тёмная тема */
 body.dark {
     --primary: #1e90ff;
     --primary-hover: #1c7cd6;
@@ -57,7 +58,7 @@ body.dark {
 
 .nav-content {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,20 +70,32 @@ body.dark {
     font-weight: 700;
     font-size: 22px;
     color: var(--primary);
-    letter-spacing: -0.5px;
 }
 
-/* Основная сетка */
+/* 🔥 НОВЫЙ ЛЕЙАУТ */
 .main-layout {
     display: grid;
-    grid-template-columns: 280px 1fr 320px;
+    grid-template-columns: 300px 1fr 280px;
     gap: 20px;
     width: 100%;
-    max-width: 1200px;
-    padding: 24px;
+    max-width: 1300px;
+    padding: 20px;
     box-sizing: border-box;
     align-items: start;
     min-height: calc(100vh - 60px);
+}
+
+/* Перестановка */
+.chat-sidebar {
+    order: 1;
+}
+
+.feed-container {
+    order: 2;
+}
+
+.sidebar {
+    order: 3;
 }
 
 /* Контейнеры */
@@ -96,10 +109,18 @@ body.dark {
     flex-direction: column;
 }
 
+/* Липкость */
+.chat-sidebar .container,
+.sidebar .container {
+    position: sticky;
+    top: 80px;
+}
+
 /* Профиль */
 .user-card {
     text-align: center;
 }
+
 .user-avatar {
     width: 88px;
     height: 88px;
@@ -114,7 +135,6 @@ body.dark {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 4px;
-    color: var(--text-main);
 }
 
 .user-card p {
@@ -131,14 +151,12 @@ body.dark {
     padding: 12px 16px;
     border-radius: var(--radius);
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: 0.2s;
     font-weight: 500;
-    font-size: 15px;
-    color: var(--text-main);
 }
 
 .user-item:hover {
-    background-color: #d7f0ff;
+    background-color: rgba(0,136,204,0.1);
 }
 
 .user-item.active {
@@ -151,37 +169,45 @@ body.dark {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    object-fit: cover;
 }
 
-/* Заголовки разделов */
+/* Заголовки */
 .section-title {
     font-weight: 700;
     font-size: 18px;
     margin-bottom: 20px;
-    color: var(--text-main);
 }
 
-/* Feed и посты */
+/* Лента */
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Посты */
 .post {
     background: var(--card);
     padding: 16px 20px;
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    margin-bottom: 18px;
     box-shadow: 0 1px 4px var(--shadow);
+    transition: 0.2s;
+}
+
+.post:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px var(--shadow);
 }
 
 .post-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 12px;
 }
 
 .author-name {
     font-weight: 700;
-    font-size: 16px;
     color: var(--primary);
 }
 
@@ -191,17 +217,12 @@ body.dark {
 }
 
 .post-content {
-    font-size: 15px;
-    line-height: 1.5;
     margin-bottom: 12px;
-    white-space: pre-wrap;
 }
 
 .post img {
     width: 100%;
     border-radius: 14px;
-    margin-top: 10px;
-    display: block;
 }
 
 /* Реакции */
@@ -214,14 +235,12 @@ body.dark {
 .react-btn {
     border: none;
     background: transparent;
-    color: var(--text-muted);
     cursor: pointer;
-    font-size: 16px;
     display: flex;
-    align-items: center;
     gap: 6px;
     font-weight: 600;
-    transition: color 0.2s ease;
+    color: var(--text-muted);
+    transition: 0.2s;
 }
 
 .react-btn:hover {
@@ -230,7 +249,7 @@ body.dark {
 
 /* Чат */
 #chatMessages {
-    height: 400px;
+    height: 350px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -238,18 +257,7 @@ body.dark {
     padding: 12px;
     background: var(--bg);
     border-radius: 14px;
-    border: 1px solid #ccc;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) transparent;
-}
-
-#chatMessages::-webkit-scrollbar {
-    width: 8px;
-}
-
-#chatMessages::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-radius: 10px;
+    border: 1px solid var(--border);
 }
 
 .msg {
@@ -257,45 +265,36 @@ body.dark {
     border-radius: 18px;
     max-width: 75%;
     font-size: 14px;
-    position: relative;
-    word-wrap: break-word;
 }
 
 .msg-me {
     background: var(--primary);
     color: white;
     align-self: flex-end;
-    border-bottom-right-radius: 4px;
 }
 
 .msg-them {
     background: var(--card);
-    color: var(--text-main);
     align-self: flex-start;
-    border-bottom-left-radius: 4px;
     box-shadow: 0 1px 3px var(--shadow);
 }
 
 /* Инпуты */
 input[type="text"] {
     width: 100%;
-    padding: 14px 18px;
+    padding: 14px;
     margin: 10px 0;
     border-radius: var(--radius);
     border: 1px solid var(--border);
     background: var(--card);
-    font-family: inherit;
-    font-size: 15px;
-    transition: border-color 0.2s ease;
-    box-sizing: border-box;
 }
 
-input[type="text"]:focus {
+input:focus {
     border-color: var(--primary);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0,136,204,0.2);
 }
 
+/* Кнопки */
 .btn-primary {
     background: var(--primary);
     color: white;
@@ -303,17 +302,14 @@ input[type="text"]:focus {
     padding: 14px;
     border-radius: var(--radius);
     font-weight: 700;
-    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    width: 100%;
 }
 
 .btn-primary:hover {
     background: var(--primary-hover);
 }
 
-/* Контейнеры с фиксированной высотой для боковых панелей */
+/* Скролл боковых */
 .sidebar, .chat-sidebar {
     display: flex;
     flex-direction: column;
@@ -325,12 +321,12 @@ input[type="text"]:focus {
 @media (max-width: 1100px) {
     .main-layout {
         grid-template-columns: 1fr;
-        max-width: 600px;
-        padding: 16px;
     }
-    .sidebar, .chat-sidebar {
-        height: auto;
-        max-height: 400px;
+
+    .chat-sidebar,
+    .feed-container,
+    .sidebar {
+        order: unset;
     }
 }
     </style>
