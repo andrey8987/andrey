@@ -212,9 +212,7 @@ body.dark {
 }
 
 .react-btn {
-
-> Максимка:
-border: none;
+    border: none;
     background: transparent;
     color: var(--text-muted);
     cursor: pointer;
@@ -370,9 +368,7 @@ input[type="text"]:focus {
     <div class="feed-container">
         <div id="postForm" class="container" style="display:none; margin-bottom: 24px;">
             <div class="section-title">✨ Создать запись</div>
-
-> Максимка:
-<input type="text" id="contentInput" placeholder="Что у вас нового?">
+            <input type="text" id="contentInput" placeholder="Что у вас нового?">
             <input type="text" id="imageUrlInput" placeholder="Ссылка на фото (URL)">
             <button id="mainBtn" class="btn-primary">Опубликовать</button>
         </div>
@@ -456,8 +452,8 @@ function listenUsers() {
             const user = uDoc.data();
             if (user.uid === currentUID) return;
             const el = document.createElement("div");
-            el.className = user-item ${activeChatUID === user.uid ? 'active' : ''};
-            el.innerHTML = <img src="${user.photo}"> <span>${user.name}</span>;
+            el.className = `user-item ${activeChatUID === user.uid ? 'active' : ''}`;
+            el.innerHTML = `<img src="${user.photo}"> <span>${user.name}</span>`;
             el.onclick = () => startChat(user);
             list.appendChild(el);
         });
@@ -468,10 +464,9 @@ function startChat(targetUser) {
     activeChatUID = targetUser.uid;
     document.getElementById("chatPlaceholder").style.display = "none";
     document.getElementById("chatBox").style.display = "block";
-    document.getElementById("chatHeader").innerText = Чат с ${targetUser.name};
-
-> Максимка:
-if (chatListener) chatListener();
+    document.getElementById("chatHeader").innerText = `Чат с ${targetUser.name}`;
+    
+    if (chatListener) chatListener();
     const chatId = getChatId(currentUID, targetUser.uid);
     const q = query(collection(db, "conversations", chatId, "messages"), orderBy("timestamp"));
     
@@ -481,7 +476,7 @@ if (chatListener) chatListener();
         snap.forEach(m => {
             const d = m.data();
             const isMe = d.from === currentUID;
-            box.innerHTML += <div class="msg ${isMe ? 'msg-me' : 'msg-them'}">${d.text}</div>;
+            box.innerHTML += `<div class="msg ${isMe ? 'msg-me' : 'msg-them'}">${d.text}</div>`;
         });
         box.scrollTop = box.scrollHeight;
     });
@@ -527,8 +522,8 @@ onSnapshot(query(collection(db, "requests"), orderBy("timestamp", "desc")), (sna
                     <span class="author-name">${p.name}</span>
                     <span class="post-time">${p.timestamp?.toDate().toLocaleTimeString() || ''}</span>
                 </div>
-                ${p.text ? <div class="post-content">${p.text}</div> : ''}
-                ${p.imageUrl ? <img src="${p.imageUrl}"> : ''}
+                ${p.text ? `<div class="post-content">${p.text}</div>` : ''}
+                ${p.imageUrl ? `<img src="${p.imageUrl}">` : ''}
                 <div class="reactions">
                     <button class="react-btn" onclick="window.react('${id}','like')"><span>👍</span> <b>${p.reactions?.like || 0}</b></button>
                     <button class="react-btn" onclick="window.react('${id}','fire')"><span>🔥</span> <b>${p.reactions?.fire || 0}</b></button>
