@@ -159,7 +159,7 @@
     // Функция получения списка группы
     async function fetchGroup() {
         const { data, error } = await supabase
-            .from('profiles')
+            .from('profiles.')
             .select('*')
             .order('username', { ascending: true });
 
