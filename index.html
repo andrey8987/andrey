@@ -62,6 +62,11 @@
             font-weight: 600;
             cursor: pointer;
             width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .btn-google:hover {
+            transform: translateY(-2px);
         }
 
         .profile-header {
@@ -112,6 +117,11 @@
             padding: 8px 20px;
             cursor: pointer;
             font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
         }
 
         .timer-card {
@@ -124,7 +134,7 @@
 
         .timer-display {
             font-family: monospace;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: #facc15;
         }
@@ -145,9 +155,14 @@
         .btn {
             border: none;
             border-radius: 40px;
-            padding: 8px 20px;
+            padding: 10px 24px;
             font-weight: 600;
             cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
         }
 
         .btn-start { background: #10b981; color: white; }
@@ -160,6 +175,11 @@
             align-items: center;
             padding: 12px;
             border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s;
+        }
+
+        .user-item:hover {
+            background: #f1f5f9;
         }
 
         .user-left {
@@ -173,10 +193,18 @@
             height: 10px;
             border-radius: 50%;
             background: #22c55e;
+            box-shadow: 0 0 0 2px #fff;
         }
 
         .offline-dot {
             background: #94a3b8;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: #e2e8f0;
         }
 
         .leaderboard-item {
@@ -185,6 +213,11 @@
             align-items: center;
             padding: 12px;
             border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s;
+        }
+
+        .leaderboard-item:hover {
+            background: #f1f5f9;
         }
 
         .medal {
@@ -192,8 +225,13 @@
             min-width: 40px;
         }
 
+        .study-time {
+            font-weight: bold;
+            color: #f59e0b;
+        }
+
         .chat-messages {
-            height: 250px;
+            height: 300px;
             overflow-y: auto;
             background: #f8fafc;
             border-radius: 20px;
@@ -206,10 +244,11 @@
             border-radius: 18px;
             padding: 10px 16px;
             margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         .message strong {
-            color: #2563eb;
+            color: #4f46e5;
         }
 
         .message-time {
@@ -229,6 +268,12 @@
             border: 1px solid #cbd5e1;
             border-radius: 40px;
             font-size: 0.9rem;
+            transition: border 0.2s;
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            border-color: #667eea;
         }
 
         .send-btn {
@@ -238,41 +283,49 @@
             border-radius: 40px;
             padding: 0 24px;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #5b67b3;
         }
 
         .achievements-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
             margin-top: 16px;
         }
 
         .achievement-card {
             background: #f8fafc;
             border-radius: 16px;
-            padding: 12px;
+            padding: 16px;
             text-align: center;
+            transition: all 0.3s;
         }
 
         .achievement-card.unlocked {
-            background: linear-gradient(135deg, #667eea15, #764ba215);
-            border: 2px solid #667eea;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            transform: scale(1.02);
         }
 
         .achievement-card.locked {
-            opacity: 0.4;
+            opacity: 0.5;
             filter: grayscale(100%);
         }
 
         .achievement-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 8px;
         }
 
         .achievement-title {
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-bottom: 4px;
+            color: #1e293b;
         }
 
         .achievement-desc {
@@ -290,6 +343,7 @@
             border-radius: 12px;
             animation: slideIn 0.3s ease-out;
             z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         @keyframes slideIn {
@@ -310,27 +364,38 @@
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 16px;
             margin-bottom: 20px;
         }
 
         .stat-card {
             background: #f8fafc;
             border-radius: 16px;
-            padding: 12px;
+            padding: 16px;
             text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
         }
 
         .stat-value {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #667eea;
+            color: #4f46e5;
         }
 
         .stat-label {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #64748b;
             margin-top: 4px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
         }
     </style>
 </head>
@@ -350,33 +415,42 @@
                     <div class="user-email" id="userEmail"></div>
                 </div>
             </div>
-            <button class="logout-btn" id="logoutBtn">Выйти</button>
+            <button class="logout-btn" id="logoutBtn">🚪 Выйти</button>
         </div>
 
         <div class="timer-card">
             <div class="timer-display" id="timerDisplay">00:00:00</div>
-            <div class="total-study" id="totalStudyDisplay">📚 Всего учёбы: 0 мин</div>
+            <div class="total-study" id="totalStudyDisplay">📚 Всего учёбы: 0 минут</div>
             <div class="session-buttons">
-                <button class="btn btn-start" id="startBtn">▶ Начать</button>
-                <button class="btn btn-pause" id="pauseBtn">⏸ Перерыв</button>
-                <button class="btn btn-end" id="endBtn">⏹ Завершить</button>
+                <button class="btn btn-start" id="startBtn">▶ Начать учиться</button>
+                <button class="btn btn-pause" id="pauseBtn">⏸ Сделать перерыв</button>
+                <button class="btn btn-end" id="endBtn">⏹ Завершить сессию</button>
             </div>
         </div>
 
         <div class="stats-grid">
-            <div class="stat-card"><div class="stat-value" id="sessionCount">0</div><div class="stat-label">Сессий</div></div>
-            <div class="stat-card"><div class="stat-value" id="messageCount">0</div><div class="stat-label">Сообщений</div></div>
-            <div class="stat-card"><div class="stat-value" id="achievementCount">0</div><div class="stat-label">Достижений</div></div>
+            <div class="stat-card">
+                <div class="stat-value" id="sessionCount">0</div>
+                <div class="stat-label">Пройдено сессий</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="messageCount">0</div>
+                <div class="stat-label">Сообщений в чате</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="achievementCount">0/4</div>
+                <div class="stat-label">Получено достижений</div>
+            </div>
         </div>
     </div>
 
     <div class="card hidden" id="groupCard">
-        <h2>👥 Монитор группы <span id="onlineCount">0</span> онлайн</h2>
+        <h2>👥 Студенты онлайн <span id="onlineCount" style="color:#10b981;">0</span></h2>
         <div id="groupList"></div>
     </div>
 
     <div class="card hidden" id="leaderboardCard">
-        <h2>🏆 Топ студентов</h2>
+        <h2>🏆 Рейтинг студентов</h2>
         <div id="leaderboardList"></div>
     </div>
 
@@ -389,8 +463,8 @@
         <h2>💬 Общий чат</h2>
         <div class="chat-messages" id="chatMessages"></div>
         <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Напишите сообщение...">
-            <button class="send-btn" id="sendBtn">Отправить</button>
+            <input type="text" id="chatInput" placeholder="Напишите сообщение..." maxlength="300">
+            <button class="send-btn" id="sendBtn">📤 Отправить</button>
         </div>
     </div>
 </div>
@@ -398,8 +472,8 @@
 <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
     
-    const SUPABASE_URL = 'https://kwntvftilhfxvgzkftld.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3bnR2ZnRpbGhmeHZnemtmdGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODA2OTQsImV4cCI6MjA5MjI1NjY5NH0.ORjSkWPU984Acbe8uPa1qzLw6Qg7Hf8BxpA65sP-nPU';
+    const SUPABASE_URL = 'https://qbykreduhwmlriyuhnxs.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFieWtyZWR1aHdtbHJpeXVobnhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODQ1MzcsImV4cCI6MjA5MjI2MDUzN30.hT3f3TIZfiZ044tmaS899sUS-2O9MspbAFvldG8e-hQ';
     
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     
@@ -410,18 +484,42 @@
     let currentSessionCount = 0;
     
     const ACHIEVEMENTS = {
-        early_bird: { id: 'early_bird', title: '🌅 Ранняя пташка', desc: 'Зашел на платформу до 8:00', icon: '🌅' },
-        marathon: { id: 'marathon', title: '🏃 Марафонец', desc: 'Проучился более 2 часов за раз', icon: '🏃' },
-        activist: { id: 'activist', title: '💬 Активист', desc: 'Написал 20 сообщений', icon: '💬' },
-        first_step: { id: 'first_step', title: '🎯 Первый шаг', desc: 'Прошел первую сессию', icon: '🎯' }
+        first_step: { 
+            id: 'first_step', 
+            title: '🎯 Первый шаг', 
+            desc: 'Завершил первую учебную сессию', 
+            icon: '🎯',
+            condition: 'Завершите первую сессию'
+        },
+        marathon: { 
+            id: 'marathon', 
+            title: '🏃 Марафонец', 
+            desc: 'Проучился более 2 часов за раз', 
+            icon: '🏃',
+            condition: 'Учитесь 2+ часа без перерыва'
+        },
+        activist: { 
+            id: 'activist', 
+            title: '💬 Активист', 
+            desc: 'Написал 20 сообщений в чате', 
+            icon: '💬',
+            condition: 'Напишите 20 сообщений'
+        },
+        early_bird: { 
+            id: 'early_bird', 
+            title: '🌅 Ранняя пташка', 
+            desc: 'Зашел на платформу до 8:00', 
+            icon: '🌅',
+            condition: 'Зайдите до 8 утра'
+        }
     };
     
-    function showNotification(msg, title = 'Уведомление') {
-        const notif = document.createElement('div');
-        notif.className = 'notification';
-        notif.innerHTML = `<strong>${title}</strong><br>${msg}`;
-        document.body.appendChild(notif);
-        setTimeout(() => notif.remove(), 3000);
+    function showNotification(message, title = '🎉 Достижение!') {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `<strong>${title}</strong><br>${message}`;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 4000);
     }
     
     async function unlockAchievement(achievementId) {
@@ -445,7 +543,7 @@
         
         if (!error) {
             const ach = ACHIEVEMENTS[achievementId];
-            showNotification(`${ach.title}: ${ach.desc}`, '🎉 НОВОЕ ДОСТИЖЕНИЕ!');
+            showNotification(`${ach.title}\n${ach.desc}`, '🎉 НОВОЕ ДОСТИЖЕНИЕ!');
             await loadAchievements();
             await updateStats();
             return true;
@@ -453,17 +551,23 @@
         return false;
     }
     
-    function formatTime(sec) {
-        return `${Math.floor(sec/3600).toString().padStart(2,'0')}:${Math.floor((sec%3600)/60).toString().padStart(2,'0')}:${(sec%60).toString().padStart(2,'0')}`;
+    function formatTime(seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = seconds % 60;
+        return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     }
     
-    function formatTotal(sec) {
-        const h = Math.floor(sec / 3600);
-        const m = Math.floor((sec % 3600) / 60);
-        return h > 0 ? `${h}ч ${m}мин` : `${m} мин`;
+    function formatTotal(seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        if (h > 0) return `${h} ч ${m} мин`;
+        return `${m} мин`;
     }
     
     async function loadAchievements() {
+        if (!currentUser) return;
+        
         const { data: profile } = await supabase
             .from('profiles')
             .select('achievements')
@@ -473,15 +577,20 @@
         const userAchievements = profile?.achievements || [];
         const container = document.getElementById('achievementsList');
         
-        container.innerHTML = Object.values(ACHIEVEMENTS).map(ach => `
-            <div class="achievement-card ${userAchievements.includes(ach.id) ? 'unlocked' : 'locked'}">
-                <div class="achievement-icon">${ach.icon}</div>
-                <div class="achievement-title">${ach.title}</div>
-                <div class="achievement-desc">${ach.desc}</div>
-            </div>
-        `).join('');
+        container.innerHTML = Object.values(ACHIEVEMENTS).map(ach => {
+            const isUnlocked = userAchievements.includes(ach.id);
+            return `
+                <div class="achievement-card ${isUnlocked ? 'unlocked' : 'locked'}">
+                    <div class="achievement-icon">${ach.icon}</div>
+                    <div class="achievement-title">${ach.title}</div>
+                    <div class="achievement-desc">${isUnlocked ? ach.desc : ach.condition}</div>
+                    ${isUnlocked ? '<span style="font-size:0.7rem; color:#10b981;">✓ Получено</span>' : '<span style="font-size:0.7rem; color:#94a3b8;">🔒 Не получено</span>'}
+                </div>
+            `;
+        }).join('');
         
-        document.getElementById('achievementCount').textContent = `${userAchievements.length}/${Object.keys(ACHIEVEMENTS).length}`;
+        const count = `${userAchievements.length}/${Object.keys(ACHIEVEMENTS).length}`;
+        document.getElementById('achievementCount').textContent = count;
     }
     
     async function loadLeaderboard() {
@@ -493,20 +602,28 @@
         
         const container = document.getElementById('leaderboardList');
         
-        if (topStudents) {
-            container.innerHTML = topStudents.map((s, i) => {
-                const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '👤';
-                return `
-                    <div class="leaderboard-item">
-                        <div class="user-left">
-                            <span class="medal">${medal}</span>
-                            <strong>${escapeHtml(s.username || 'Студент')}</strong>
-                        </div>
-                        <div>${formatTotal(s.total_study_seconds || 0)}</div>
-                    </div>
-                `;
-            }).join('');
+        if (!topStudents || topStudents.length === 0) {
+            container.innerHTML = '<div class="empty-state">🏆 Пока нет участников</div>';
+            return;
         }
+        
+        container.innerHTML = topStudents.map((student, index) => {
+            let medal = '';
+            if (index === 0) medal = '🥇';
+            else if (index === 1) medal = '🥈';
+            else if (index === 2) medal = '🥉';
+            else medal = `${index + 1}.`;
+            
+            return `
+                <div class="leaderboard-item">
+                    <div class="user-left">
+                        <span class="medal">${medal}</span>
+                        <strong>${escapeHtml(student.username || 'Студент')}</strong>
+                    </div>
+                    <div class="study-time">📚 ${formatTotal(student.total_study_seconds || 0)}</div>
+                </div>
+            `;
+        }).join('');
     }
     
     async function loadMessages() {
@@ -518,39 +635,58 @@
         
         const container = document.getElementById('chatMessages');
         if (!messages || messages.length === 0) {
-            container.innerHTML = '<div style="text-align:center; color:#94a3b8;">💬 Нет сообщений</div>';
+            container.innerHTML = '<div class="empty-state">💬 Напишите первое сообщение!</div>';
             return;
         }
         
-        container.innerHTML = messages.map(m => `
+        container.innerHTML = messages.map(msg => `
             <div class="message">
-                <strong>${escapeHtml(m.username)}</strong>
-                <span class="message-time">${new Date(m.created_at).toLocaleTimeString()}</span>
-                <div>${escapeHtml(m.message)}</div>
+                <strong>${escapeHtml(msg.username)}</strong>
+                <span class="message-time">${new Date(msg.created_at).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}</span>
+                <div style="margin-top: 6px;">${escapeHtml(msg.message)}</div>
             </div>
         `).join('');
         container.scrollTop = container.scrollHeight;
     }
     
     async function loadGroupList() {
-        const { data: users } = await supabase.from('profiles').select('username, status, last_seen');
-        const now = new Date();
-        const online = users?.filter(u => u.last_seen && new Date(u.last_seen) > new Date(now - 120000)).length || 0;
-        document.getElementById('onlineCount').textContent = online;
+        const { data: users } = await supabase
+            .from('profiles')
+            .select('username, status, last_seen')
+            .order('username');
         
         const container = document.getElementById('groupList');
-        container.innerHTML = users?.map(u => `
-            <div class="user-item">
-                <div class="user-left">
-                    <span class="online-dot"></span>
-                    <strong>${escapeHtml(u.username || 'Аноним')}</strong>
+        
+        if (!users || users.length === 0) {
+            container.innerHTML = '<div class="empty-state">👥 Нет других пользователей</div>';
+            document.getElementById('onlineCount').textContent = '0';
+            return;
+        }
+        
+        const now = new Date();
+        const onlineUsers = users.filter(u => u.last_seen && new Date(u.last_seen) > new Date(now - 120000));
+        document.getElementById('onlineCount').textContent = onlineUsers.length;
+        
+        container.innerHTML = users.map(user => {
+            const isOnline = user.last_seen && new Date(user.last_seen) > new Date(now - 120000);
+            return `
+                <div class="user-item">
+                    <div class="user-left">
+                        <span class="online-dot ${!isOnline ? 'offline-dot' : ''}"></span>
+                        <strong>${escapeHtml(user.username || 'Аноним')}</strong>
+                        <span class="status-badge">${user.status || '🏠 Дома'}</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: ${isOnline ? '#10b981' : '#94a3b8'}">
+                        ${isOnline ? '🟢 онлайн' : '⚫ офлайн'}
+                    </div>
                 </div>
-                <div>${u.status || '🏠 Дома'}</div>
-            </div>
-        `).join('') || '<div style="padding:20px;">Нет пользователей</div>';
+            `;
+        }).join('');
     }
     
     async function updateStats() {
+        if (!currentUser) return;
+        
         const { data: profile } = await supabase
             .from('profiles')
             .select('message_count, achievements')
@@ -559,6 +695,8 @@
         
         if (profile) {
             document.getElementById('messageCount').textContent = profile.message_count || 0;
+            const achievementCount = (profile.achievements?.length || 0);
+            document.getElementById('achievementCount').textContent = `${achievementCount}/${Object.keys(ACHIEVEMENTS).length}`;
         }
     }
     
@@ -568,7 +706,8 @@
         sessionStartTime = new Date();
         await supabase.from('profiles').update({
             study_session_start: sessionStartTime.toISOString(),
-            status: '📚 Учусь'
+            status: '📚 Учусь',
+            last_seen: new Date().toISOString()
         }).eq('id', currentUser.id);
         
         if (timerInterval) clearInterval(timerInterval);
@@ -580,6 +719,7 @@
         }, 1000);
         
         await loadGroupList();
+        showNotification('Сессия началась! Успехов в учебе! 📚', '▶️ Старт');
     }
     
     async function pauseSession() {
@@ -592,20 +732,61 @@
             document.getElementById('sessionCount').textContent = currentSessionCount;
             document.getElementById('totalStudyDisplay').textContent = `📚 Всего учёбы: ${formatTotal(totalSeconds)}`;
             
-            if (currentSessionCount === 1) await unlockAchievement('first_step');
-            if (elapsed >= 7200) await unlockAchievement('marathon');
+            if (currentSessionCount === 1) {
+                await unlockAchievement('first_step');
+            }
+            if (elapsed >= 7200) {
+                await unlockAchievement('marathon');
+            }
         }
         
         sessionStartTime = null;
         await supabase.from('profiles').update({
             total_study_seconds: totalSeconds,
             study_session_start: null,
-            status: '☕ Перерыв'
+            status: '☕ Перерыв',
+            last_seen: new Date().toISOString()
         }).eq('id', currentUser.id);
         
+        if (timerInterval) clearInterval(timerInterval);
         document.getElementById('timerDisplay').textContent = '00:00:00';
         await loadGroupList();
         await loadLeaderboard();
+        showNotification('Сессия завершена! Отдохните немного ☕', '⏸️ Перерыв');
+    }
+    
+    async function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text || !currentUser) return;
+        
+        const username = document.getElementById('userName').textContent;
+        
+        await supabase.from('messages').insert({
+            user_id: currentUser.id,
+            username: username,
+            message: text,
+            created_at: new Date().toISOString()
+        });
+        
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('message_count')
+            .eq('id', currentUser.id)
+            .single();
+        
+        const newCount = (profile?.message_count || 0) + 1;
+        await supabase.from('profiles')
+            .update({ message_count: newCount })
+            .eq('id', currentUser.id);
+        
+        if (newCount >= 20) {
+            await unlockAchievement('activist');
+        }
+        
+        input.value = '';
+        await loadMessages();
+        await updateStats();
     }
     
     async function init() {
@@ -613,6 +794,7 @@
         
         if (user) {
             currentUser = user;
+            console.log('Пользователь:', user.email);
             
             let { data: profile } = await supabase
                 .from('profiles')
@@ -621,31 +803,50 @@
                 .single();
             
             if (!profile) {
+                console.log('Создаем профиль...');
                 await supabase.from('profiles').insert({
                     id: user.id,
                     username: user.user_metadata?.full_name || user.email.split('@')[0],
+                    avatar_url: user.user_metadata?.avatar_url,
                     status: '🏠 Дома',
                     total_study_seconds: 0,
                     message_count: 0,
-                    achievements: []
+                    achievements: [],
+                    last_seen: new Date().toISOString()
                 });
-                profile = { total_study_seconds: 0 };
+                profile = { total_study_seconds: 0, message_count: 0, achievements: [] };
             }
             
             totalSeconds = profile.total_study_seconds || 0;
+            currentSessionCount = 0;
+            
             document.getElementById('totalStudyDisplay').textContent = `📚 Всего учёбы: ${formatTotal(totalSeconds)}`;
             document.getElementById('userName').textContent = user.user_metadata?.full_name || user.email.split('@')[0];
             document.getElementById('userEmail').textContent = user.email;
             document.getElementById('userAvatar').textContent = (user.user_metadata?.full_name?.charAt(0) || user.email.charAt(0)).toUpperCase();
+            document.getElementById('sessionCount').textContent = '0';
             
             const hour = new Date().getHours();
-            if (hour < 8) await unlockAchievement('early_bird');
+            if (hour < 8 || hour === 8) {
+                await unlockAchievement('early_bird');
+            }
             
             await loadAchievements();
             await loadLeaderboard();
             await loadMessages();
             await loadGroupList();
             await updateStats();
+            
+            // Восстановление сессии если была
+            if (profile.study_session_start && profile.status === '📚 Учусь') {
+                sessionStartTime = new Date(profile.study_session_start);
+                timerInterval = setInterval(() => {
+                    if (sessionStartTime) {
+                        const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
+                        document.getElementById('timerDisplay').textContent = formatTime(elapsed);
+                    }
+                }, 1000);
+            }
             
             document.getElementById('authCard').classList.add('hidden');
             document.getElementById('appCard').classList.remove('hidden');
@@ -654,58 +855,72 @@
             document.getElementById('achievementsCard').classList.remove('hidden');
             document.getElementById('chatCard').classList.remove('hidden');
             
+            // Обновление last_seen
+            setInterval(async () => {
+                if (currentUser) {
+                    await supabase.from('profiles')
+                        .update({ last_seen: new Date().toISOString() })
+                        .eq('id', currentUser.id);
+                }
+            }, 30000);
+            
+            // Обновление списков
             setInterval(() => {
                 loadGroupList();
                 loadLeaderboard();
             }, 10000);
             
+            // Realtime подписки
             supabase.channel('public')
                 .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, () => loadMessages())
+                .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, () => {
+                    loadGroupList();
+                    loadLeaderboard();
+                })
                 .subscribe();
+                
         } else {
             document.getElementById('authContent').innerHTML = `
-                <button class="btn-google" id="googleLoginBtn">🚀 Войти через Google</button>
-                <p style="margin-top:20px; text-align:center; color:#64748b;">Войдите, чтобы отслеживать учёбу и получать достижения</p>
+                <button class="btn-google" id="googleLoginBtn">
+                    🚀 Войти через Google
+                </button>
+                <p style="margin-top: 20px; text-align: center; color: #64748b;">
+                    📚 Отслеживайте время учебы<br>
+                    🏆 Соревнуйтесь с друзьями<br>
+                    🎖 Получайте достижения
+                </p>
             `;
             document.getElementById('googleLoginBtn')?.addEventListener('click', async () => {
-                await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.href } });
+                const { error } = await supabase.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: { redirectTo: window.location.href }
+                });
+                if (error) alert('Ошибка: ' + error.message);
             });
         }
     }
     
     function escapeHtml(str) {
         if (!str) return '';
-        return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
+        return str.replace(/[&<>]/g, m => {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
     }
     
+    // Event listeners
     document.getElementById('startBtn')?.addEventListener('click', startSession);
     document.getElementById('pauseBtn')?.addEventListener('click', pauseSession);
     document.getElementById('endBtn')?.addEventListener('click', pauseSession);
-    document.getElementById('logoutBtn')?.addEventListener('click', async () => { await supabase.auth.signOut(); location.reload(); });
-    document.getElementById('sendBtn')?.addEventListener('click', async () => {
-        const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-        if (text && currentUser) {
-            await supabase.from('messages').insert({
-                user_id: currentUser.id,
-                username: document.getElementById('userName').textContent,
-                message: text
-            });
-            
-            const { data: profile } = await supabase.from('profiles').select('message_count').eq('id', currentUser.id).single();
-            const newCount = (profile?.message_count || 0) + 1;
-            await supabase.from('profiles').update({ message_count: newCount }).eq('id', currentUser.id);
-            
-            if (newCount >= 20) await unlockAchievement('activist');
-            
-            input.value = '';
-            await loadMessages();
-            await updateStats();
-        }
+    document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+        await supabase.auth.signOut();
+        location.reload();
     });
-    
+    document.getElementById('sendBtn')?.addEventListener('click', sendMessage);
     document.getElementById('chatInput')?.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') document.getElementById('sendBtn').click();
+        if (e.key === 'Enter') sendMessage();
     });
     
     init();
