@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ТЕКНО-MIR | Мощные новинки гейминг без границ</title>
+    <title>ТЕКНО-MIR | Игровые технологии</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -25,13 +25,26 @@
             padding: 0 20px;
         }
 
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff6b00;
+            border-radius: 5px;
+        }
+
         /* Header */
         header {
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             border-bottom: 1px solid rgba(255, 107, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
         .header-top {
@@ -49,6 +62,7 @@
             background: linear-gradient(135deg, #fff 0%, #ff6b00 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
         .logo span {
@@ -60,6 +74,7 @@
             font-size: 12px;
             color: #ff6b00;
             margin-top: 5px;
+            letter-spacing: 1px;
         }
 
         .header-actions {
@@ -70,9 +85,10 @@
 
         .search-bar {
             display: flex;
-            background: #2a2a2a;
+            background: rgba(255,255,255,0.1);
             border-radius: 50px;
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
 
         .search-bar input {
@@ -82,6 +98,10 @@
             color: #fff;
             width: 300px;
             outline: none;
+        }
+
+        .search-bar input::placeholder {
+            color: #888;
         }
 
         .search-bar button {
@@ -109,37 +129,44 @@
             text-decoration: none;
             transition: 0.3s;
             cursor: pointer;
-            background: none;
+            background: rgba(255,255,255,0.1);
             border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .icon-btn:hover {
-            color: #ff6b00;
+            background: #ff6b00;
+            transform: translateY(-2px);
         }
 
         .badge {
             position: absolute;
-            top: -8px;
-            right: -12px;
+            top: -5px;
+            right: -5px;
             background: #ff6b00;
             color: #fff;
-            font-size: 12px;
+            font-size: 11px;
             padding: 2px 6px;
             border-radius: 50%;
-            min-width: 20px;
+            min-width: 18px;
             text-align: center;
         }
 
         /* Navigation */
         nav {
             padding: 15px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .nav-menu {
             list-style: none;
             display: flex;
-            gap: 30px;
+            gap: 40px;
             flex-wrap: wrap;
         }
 
@@ -150,47 +177,91 @@
             transition: 0.3s;
             padding: 5px 0;
             cursor: pointer;
+            position: relative;
+        }
+
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b00;
+            transition: 0.3s;
+        }
+
+        .nav-menu li a:hover::after,
+        .nav-menu li a.active::after {
+            width: 100%;
         }
 
         .nav-menu li a:hover,
         .nav-menu li a.active {
             color: #ff6b00;
-            border-bottom: 2px solid #ff6b00;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a0a 100%);
-            padding: 80px 0;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a0f0a 100%);
+            padding: 100px 0;
             position: relative;
             overflow: hidden;
         }
 
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,107,0,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+        }
+
         .hero-content {
             max-width: 600px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h2 {
             font-size: 48px;
             font-weight: 800;
             margin-bottom: 10px;
+            animation: fadeInUp 0.6s ease;
         }
 
         .hero h3 {
             font-size: 36px;
             color: #ff6b00;
             margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease 0.1s both;
         }
 
         .hero p {
             font-size: 18px;
             margin-bottom: 30px;
+            color: #ccc;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .btn-primary {
             display: inline-block;
             padding: 15px 40px;
-            background: #ff6b00;
+            background: linear-gradient(135deg, #ff6b00, #ff4500);
             color: #fff;
             text-decoration: none;
             border-radius: 50px;
@@ -199,25 +270,27 @@
             cursor: pointer;
             border: none;
             font-size: 16px;
+            animation: fadeInUp 0.6s ease 0.3s both;
         }
 
         .btn-primary:hover {
-            background: #ff8533;
             transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255,107,0,0.3);
         }
 
         .btn-secondary {
             padding: 12px 25px;
-            background: #444;
+            background: rgba(255,255,255,0.1);
             color: #fff;
-            border: none;
+            border: 1px solid rgba(255,107,0,0.5);
             border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
         }
 
         .btn-secondary:hover {
-            background: #555;
+            background: #ff6b00;
+            border-color: #ff6b00;
         }
 
         /* Section Title */
@@ -249,18 +322,19 @@
         }
 
         .category-card {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
             padding: 40px 30px;
             text-align: center;
-            border-radius: 15px;
+            border-radius: 20px;
             transition: 0.3s;
             cursor: pointer;
+            border: 1px solid rgba(255,107,0,0.1);
         }
 
         .category-card:hover {
             transform: translateY(-10px);
-            background: #222;
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.2);
+            border-color: rgba(255,107,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .category-card i {
@@ -286,52 +360,47 @@
         }
 
         .product-card {
-            background: #1a1a1a;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
+            border-radius: 20px;
             overflow: hidden;
             transition: 0.3s;
             position: relative;
+            border: 1px solid rgba(255,107,0,0.1);
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255,107,0,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
         .product-image {
             position: relative;
-            height: 250px;
-            overflow: hidden;
-            background: #2a2a2a;
+            height: 200px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: 0.3s;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
+        .product-icon {
+            font-size: 80px;
+            color: #ff6b00;
         }
 
         .favorite-btn {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            width: 40px;
-            height: 40px;
+            background: rgba(0,0,0,0.7);
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 20px;
+            font-size: 16px;
             cursor: pointer;
             transition: 0.3s;
             z-index: 10;
@@ -354,12 +423,12 @@
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 10px;
-            min-height: 50px;
         }
 
         .rating {
             color: #ffc107;
             margin-bottom: 10px;
+            font-size: 14px;
         }
 
         .price {
@@ -379,7 +448,7 @@
         .add-to-cart {
             width: 100%;
             padding: 12px;
-            background: #ff6b00;
+            background: linear-gradient(135deg, #ff6b00, #ff4500);
             color: #fff;
             border: none;
             border-radius: 50px;
@@ -390,12 +459,12 @@
         }
 
         .add-to-cart:hover {
-            background: #ff8533;
+            transform: scale(0.98);
         }
 
         /* Advantages */
         .advantages {
-            background: #111;
+            background: linear-gradient(135deg, #0f0f0f, #050505);
             padding: 60px 0;
         }
 
@@ -430,12 +499,13 @@
         }
 
         .filters {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
             padding: 25px;
-            border-radius: 15px;
+            border-radius: 20px;
             height: fit-content;
             position: sticky;
             top: 100px;
+            border: 1px solid rgba(255,107,0,0.1);
         }
 
         .filters h3 {
@@ -455,6 +525,19 @@
         #priceRange {
             width: 100%;
             margin: 15px 0;
+            -webkit-appearance: none;
+            background: #333;
+            height: 3px;
+            border-radius: 5px;
+        }
+
+        #priceRange::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #ff6b00;
+            border-radius: 50%;
+            cursor: pointer;
         }
 
         .price-inputs {
@@ -488,6 +571,7 @@
 
         .filter-group input[type="checkbox"] {
             margin-right: 10px;
+            accent-color: #ff6b00;
         }
 
         .catalog-header {
@@ -513,29 +597,38 @@
 
         /* Cart Page */
         .cart-container {
-            background: #1a1a1a;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
+            border-radius: 20px;
             padding: 30px;
             margin-bottom: 40px;
         }
 
         .cart-item {
             display: grid;
-            grid-template-columns: 100px 1fr auto auto;
+            grid-template-columns: 80px 1fr auto auto;
             gap: 20px;
             align-items: center;
             padding: 20px 0;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid #333;
         }
 
         .cart-item:last-child {
             border-bottom: none;
         }
 
-        .cart-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+        .cart-icon {
+            width: 60px;
+            height: 60px;
+            background: #2a2a2a;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-icon i {
+            font-size: 30px;
+            color: #ff6b00;
         }
 
         .cart-item-info h4 {
@@ -578,8 +671,8 @@
         }
 
         .cart-summary {
-            background: #1a1a1a;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
+            border-radius: 20px;
             padding: 30px;
             text-align: right;
         }
@@ -589,9 +682,10 @@
         }
 
         .cart-summary .total {
-            font-size: 28px;
+            font-size: 32px;
             color: #ff6b00;
             margin: 15px 0;
+            font-weight: 700;
         }
 
         /* Contacts Page */
@@ -610,9 +704,10 @@
             display: flex;
             gap: 20px;
             padding: 25px;
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
             border-radius: 15px;
             margin-bottom: 20px;
+            border: 1px solid rgba(255,107,0,0.1);
         }
 
         .contact-card i {
@@ -661,9 +756,9 @@
         }
 
         .about-content {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
             padding: 40px;
-            border-radius: 15px;
+            border-radius: 20px;
         }
 
         .about-content h2 {
@@ -692,7 +787,7 @@
 
         /* Footer */
         footer {
-            background: #0f0f0f;
+            background: #0a0a0a;
             padding: 60px 0 20px;
             margin-top: 60px;
             border-top: 1px solid #222;
@@ -707,6 +802,7 @@
 
         .footer-section h3, .footer-section h4 {
             margin-bottom: 20px;
+            color: #ff6b00;
         }
 
         .footer-section ul {
@@ -750,8 +846,8 @@
         .empty-state {
             text-align: center;
             padding: 60px;
-            background: #1a1a1a;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
+            border-radius: 20px;
         }
 
         .empty-state i {
@@ -779,11 +875,17 @@
         }
 
         .modal-content {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a1a, #141414);
+            padding: 40px;
+            border-radius: 20px;
             text-align: center;
             max-width: 400px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .modal-content i {
@@ -795,23 +897,6 @@
         .modal-content p {
             margin-bottom: 20px;
             font-size: 18px;
-        }
-
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 80px;
-        }
-
-        .loading i {
-            font-size: 48px;
-            color: #ff6b00;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         /* Responsive */
@@ -840,6 +925,9 @@
             }
             .filters {
                 position: static;
+            }
+            .nav-menu {
+                gap: 20px;
             }
         }
     </style>
@@ -939,166 +1027,99 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    // ============= НАСТРОЙКИ SUPABASE =============
-    const SUPABASE_URL = 'https://kwntvftilhfxvgzkftld.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3bnR2ZnRpbGhmeHZnemtmdGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODA2OTQsImV4cCI6MjA5MjI1NjY5NH0.ORjSkWPU984Acbe8uPa1qzLw6Qg7Hf8BxpA65sP-nPU';
-    
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const sessionId = localStorage.getItem('sessionId') || 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    localStorage.setItem('sessionId', sessionId);
-    
+    // ============= ДАННЫЕ =============
     let currentPage = 'home';
-    let products = [];
+    let products = [
+        { id: 1, name: 'ASUS ROG Strix G16', price: 159990, old_price: 189990, category: 'laptop', rating: 4.9, in_stock: true, icon: 'fa-laptop-code' },
+        { id: 2, name: 'MSI Raider GE78', price: 249990, old_price: 289990, category: 'laptop', rating: 4.9, in_stock: true, icon: 'fa-laptop-code' },
+        { id: 3, name: 'Lenovo Legion Pro 7', price: 199990, old_price: 229990, category: 'laptop', rating: 4.8, in_stock: true, icon: 'fa-laptop-code' },
+        { id: 4, name: 'Acer Predator Helios', price: 139990, old_price: 159990, category: 'laptop', rating: 4.7, in_stock: true, icon: 'fa-laptop-code' },
+        { id: 5, name: 'HP Omen 17', price: 179990, old_price: 199990, category: 'laptop', rating: 4.7, in_stock: true, icon: 'fa-laptop-code' },
+        { id: 6, name: 'Dell Alienware m18', price: 299990, old_price: 349990, category: 'laptop', rating: 4.9, in_stock: true, icon: 'fa-laptop-code' },
+        { id: 7, name: 'Игровой ПК Ultra', price: 249990, old_price: 299990, category: 'pc', rating: 4.8, in_stock: true, icon: 'fa-desktop' },
+        { id: 8, name: 'Игровой ПК Pro', price: 179990, old_price: 209990, category: 'pc', rating: 4.7, in_stock: true, icon: 'fa-desktop' },
+        { id: 9, name: 'Игровой ПК Standard', price: 129990, old_price: 149990, category: 'pc', rating: 4.6, in_stock: true, icon: 'fa-desktop' },
+        { id: 10, name: 'Клавиатура Mechanical RGB', price: 15990, old_price: 19990, category: 'peripheral', rating: 4.8, in_stock: true, icon: 'fa-keyboard' },
+        { id: 11, name: 'Мышь Gaming Pro', price: 8990, old_price: 12990, category: 'peripheral', rating: 4.7, in_stock: true, icon: 'fa-mouse' },
+        { id: 12, name: 'Монитор 165Hz 27"', price: 89990, old_price: 109990, category: 'peripheral', rating: 4.8, in_stock: true, icon: 'fa-tv' },
+        { id: 13, name: 'Гарнитура 7.1', price: 12990, old_price: 15990, category: 'accessory', rating: 4.6, in_stock: true, icon: 'fa-headset' },
+        { id: 14, name: 'Игровое кресло', price: 49990, old_price: 59990, category: 'accessory', rating: 4.7, in_stock: true, icon: 'fa-chair' },
+        { id: 15, name: 'Коврик для мыши XL', price: 4990, old_price: 6990, category: 'accessory', rating: 4.5, in_stock: true, icon: 'fa-mouse-pointer' }
+    ];
+    
     let favorites = new Set();
     let cart = [];
     
     let catalogFilters = {
         search: '',
         minPrice: 0,
-        maxPrice: 500000,
+        maxPrice: 350000,
         category: 'all',
         inStockOnly: false,
         sort: 'default'
     };
     
-    // ============= ЗАГРУЗКА ДАННЫХ =============
-    async function loadProducts() {
-        try {
-            const { data, error } = await supabase.from('products').select('*');
-            if (!error && data && data.length > 0) {
-                products = data;
-            } else {
-                // Локальные товары если Supabase не отвечает
-                products = [
-                    { id: 1, name: 'ASUS TUF Gaming F15', price: 89990, old_price: 99990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
-                    { id: 2, name: 'ASUS TUF Gaming F17', price: 99990, old_price: 109990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
-                    { id: 3, name: 'MSI Katana 15', price: 109990, old_price: 129990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true },
-                    { id: 4, name: 'Lenovo Legion 5', price: 119990, old_price: 139990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
-                    { id: 5, name: 'Acer Nitro 5', price: 79990, old_price: 89990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.6, in_stock: true },
-                    { id: 6, name: 'HP Victus 16', price: 84990, old_price: 94990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
-                    { id: 7, name: 'Dell G15', price: 114990, old_price: 124990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
-                    { id: 8, name: 'Apple MacBook Pro M3', price: 499990, old_price: 549990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true },
-                    { id: 9, name: 'ASUS ROG Strix G16', price: 159990, old_price: 179990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true },
-                    { id: 10, name: 'MSI Stealth 14', price: 189990, old_price: 209990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true }
-                ];
-            }
-        } catch(e) {
-            console.warn('Ошибка загрузки товаров, используем локальные');
-            products = [
-                { id: 1, name: 'ASUS TUF Gaming F15', price: 89990, old_price: 99990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
-                { id: 2, name: 'ASUS TUF Gaming F17', price: 99990, old_price: 109990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
-                { id: 3, name: 'MSI Katana 15', price: 109990, old_price: 129990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true },
-                { id: 4, name: 'Lenovo Legion 5', price: 119990, old_price: 139990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
-                { id: 5, name: 'Acer Nitro 5', price: 79990, old_price: 89990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.6, in_stock: true },
-                { id: 6, name: 'HP Victus 16', price: 84990, old_price: 94990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
-                { id: 7, name: 'Dell G15', price: 114990, old_price: 124990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
-                { id: 8, name: 'Apple MacBook Pro M3', price: 499990, old_price: 549990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true }
-            ];
+    // ============= ЗАГРУЗКА ИЗ LOCALSTORAGE =============
+    function loadData() {
+        const savedFavorites = localStorage.getItem('tekno_favorites');
+        if (savedFavorites) {
+            JSON.parse(savedFavorites).forEach(id => favorites.add(id));
         }
-    }
-    
-    async function loadFavorites() {
-        try {
-            favorites.clear();
-            const { data } = await supabase.from('favorites').select('product_id').eq('session_id', sessionId);
-            if (data) data.forEach(f => favorites.add(f.product_id));
-        } catch(e) {
-            const saved = localStorage.getItem('favorites_' + sessionId);
-            if (saved) JSON.parse(saved).forEach(id => favorites.add(id));
+        
+        const savedCart = localStorage.getItem('tekno_cart');
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
         }
+        
         updateFavoritesCount();
-    }
-    
-    async function loadCart() {
-        try {
-            cart = [];
-            const { data } = await supabase.from('cart').select('*').eq('session_id', sessionId);
-            if (data) {
-                for (const item of data) {
-                    const product = products.find(p => p.id === item.product_id);
-                    if (product) cart.push({ ...item, product });
-                }
-            }
-        } catch(e) {
-            const saved = localStorage.getItem('cart_' + sessionId);
-            if (saved) {
-                const savedCart = JSON.parse(saved);
-                for (const item of savedCart) {
-                    const product = products.find(p => p.id === item.product_id);
-                    if (product) cart.push({ ...item, product });
-                }
-            }
-        }
         updateCartCount();
     }
     
-    async function toggleFavorite(productId) {
+    function saveFavorites() {
+        localStorage.setItem('tekno_favorites', JSON.stringify([...favorites]));
+    }
+    
+    function saveCart() {
+        localStorage.setItem('tekno_cart', JSON.stringify(cart));
+    }
+    
+    // ============= ФУНКЦИИ =============
+    function toggleFavorite(productId) {
         if (favorites.has(productId)) {
             favorites.delete(productId);
-            try {
-                await supabase.from('favorites').delete().eq('product_id', productId).eq('session_id', sessionId);
-            } catch(e) {
-                localStorage.setItem('favorites_' + sessionId, JSON.stringify([...favorites]));
-            }
         } else {
             favorites.add(productId);
-            try {
-                await supabase.from('favorites').insert({ product_id: productId, session_id: sessionId });
-            } catch(e) {
-                localStorage.setItem('favorites_' + sessionId, JSON.stringify([...favorites]));
-            }
         }
+        saveFavorites();
         updateFavoritesCount();
         renderCurrentPage();
     }
     
-    async function addToCart(productId, quantity = 1) {
+    function addToCart(productId, quantity = 1) {
         const existing = cart.find(item => item.product_id === productId);
         if (existing) {
             existing.quantity += quantity;
-            try {
-                await supabase.from('cart').update({ quantity: existing.quantity }).eq('id', existing.id);
-            } catch(e) {
-                localStorage.setItem('cart_' + sessionId, JSON.stringify(cart.map(c => ({ product_id: c.product_id, quantity: c.quantity }))));
-            }
         } else {
-            const product = products.find(p => p.id === productId);
-            const newItem = { product_id: productId, quantity, session_id: sessionId, product };
-            cart.push(newItem);
-            try {
-                await supabase.from('cart').insert({ product_id: productId, quantity, session_id: sessionId });
-            } catch(e) {
-                localStorage.setItem('cart_' + sessionId, JSON.stringify(cart.map(c => ({ product_id: c.product_id, quantity: c.quantity }))));
-            }
+            cart.push({ product_id: productId, quantity });
         }
+        saveCart();
         updateCartCount();
         showModal('Товар добавлен в корзину!');
         renderCurrentPage();
     }
     
-    async function updateCartQuantity(productId, delta) {
-        const item = cart.find(i => i.product_id === productId);
-        if (item) {
-            item.quantity += delta;
-            if (item.quantity <= 0) {
-                cart = cart.filter(i => i.product_id !== productId);
-                try {
-                    await supabase.from('cart').delete().eq('product_id', productId).eq('session_id', sessionId);
-                } catch(e) {
-                    localStorage.setItem('cart_' + sessionId, JSON.stringify(cart.map(c => ({ product_id: c.product_id, quantity: c.quantity }))));
-                }
-            } else {
-                try {
-                    await supabase.from('cart').update({ quantity: item.quantity }).eq('id', item.id);
-                } catch(e) {
-                    localStorage.setItem('cart_' + sessionId, JSON.stringify(cart.map(c => ({ product_id: c.product_id, quantity: c.quantity }))));
-                }
+    function updateCartQuantity(productId, delta) {
+        const index = cart.findIndex(i => i.product_id === productId);
+        if (index !== -1) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
             }
+            saveCart();
+            updateCartCount();
+            renderCurrentPage();
         }
-        updateCartCount();
-        renderCurrentPage();
     }
     
     function updateFavoritesCount() {
@@ -1128,17 +1149,18 @@
     function renderProductCard(product, showFavoriteBtn = true) {
         const isFavorite = favorites.has(product.id);
         const stars = '★'.repeat(Math.floor(product.rating)) + (product.rating % 1 >= 0.5 ? '½' : '');
+        
         return `
             <div class="product-card">
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300x250?text=No+Image'">
+                    <i class="fas ${product.icon} product-icon"></i>
                     ${showFavoriteBtn ? `<button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id})"><i class="fas fa-heart"></i></button>` : ''}
                 </div>
                 <div class="product-info">
                     <div class="product-title">${product.name}</div>
                     <div class="rating">${stars} (${product.rating})</div>
                     <div class="price">${product.price.toLocaleString()} тг${product.old_price ? `<span class="old-price">${product.old_price.toLocaleString()} тг</span>` : ''}</div>
-                    <button class="add-to-cart" onclick="addToCart(${product.id})">В корзину</button>
+                    <button class="add-to-cart" onclick="addToCart(${product.id})"><i class="fas fa-shopping-cart"></i> В корзину</button>
                 </div>
             </div>
         `;
@@ -1170,15 +1192,15 @@
     }
     
     function renderHome() {
-        const featured = products.slice(0, 6);
+        const featured = products.slice(0, 8);
         document.getElementById('mainContent').innerHTML = `
             <section class="hero">
                 <div class="container">
                     <div class="hero-content">
-                        <h2>Игровые ноутбуки</h2>
+                        <h2>Игровые технологии</h2>
                         <h3>Мощность без границ</h3>
-                        <p>Скидки до 30% на топовые модели</p>
-                        <button class="btn-primary" onclick="showPage('catalog')">Купить сейчас →</button>
+                        <p>Скидки до 30% на топовые модели. Рассрочка 0-0-12 от Halyk Bank</p>
+                        <button class="btn-primary" onclick="showPage('catalog')">Каталог товаров →</button>
                     </div>
                 </div>
             </section>
@@ -1189,22 +1211,22 @@
                         <div class="category-card" onclick="catalogFilters.category='laptop'; showPage('catalog')">
                             <i class="fas fa-laptop-code"></i>
                             <h3>Игровые ноутбуки</h3>
-                            <p>120+ моделей</p>
+                            <p>6+ моделей</p>
                         </div>
                         <div class="category-card" onclick="catalogFilters.category='pc'; showPage('catalog')">
                             <i class="fas fa-desktop"></i>
                             <h3>Игровые ПК</h3>
-                            <p>50+ сборок</p>
+                            <p>3+ сборок</p>
                         </div>
                         <div class="category-card" onclick="catalogFilters.category='peripheral'; showPage('catalog')">
                             <i class="fas fa-keyboard"></i>
                             <h3>Периферия</h3>
-                            <p>300+ товаров</p>
+                            <p>3+ товаров</p>
                         </div>
                         <div class="category-card" onclick="catalogFilters.category='accessory'; showPage('catalog')">
                             <i class="fas fa-headset"></i>
-                            <h3>Гарнитуры</h3>
-                            <p>80+ моделей</p>
+                            <h3>Аксессуары</h3>
+                            <p>4+ товаров</p>
                         </div>
                     </div>
                 </div>
@@ -1221,7 +1243,7 @@
                         <div class="advantage-item"><i class="fas fa-truck"></i><h4>Бесплатная доставка</h4><p>По Алматы от 100 000 тг</p></div>
                         <div class="advantage-item"><i class="fas fa-shield-alt"></i><h4>Гарантия 12 месяцев</h4><p>Официальная гарантия</p></div>
                         <div class="advantage-item"><i class="fas fa-credit-card"></i><h4>Рассрочка 0-0-12</h4><p>Без переплат</p></div>
-                        <div class="advantage-item"><i class="fas fa-store"></i><h4>Более 500 товаров</h4><p>В наличии на складе</p></div>
+                        <div class="advantage-item"><i class="fas fa-store"></i><h4>Шоу-рум в Алматы</h4><p>ул. Сатпаева 18А</p></div>
                     </div>
                 </div>
             </section>
@@ -1257,10 +1279,10 @@
             <div class="container">
                 <div class="catalog-layout">
                     <aside class="filters">
-                        <h3>Фильтры</h3>
+                        <h3><i class="fas fa-filter"></i> Фильтры</h3>
                         <div class="filter-group">
                             <h4>Цена (тг)</h4>
-                            <input type="range" id="priceRange" min="0" max="500000" step="10000" value="${catalogFilters.maxPrice}">
+                            <input type="range" id="priceRange" min="0" max="350000" step="10000" value="${catalogFilters.maxPrice}">
                             <div class="price-inputs">
                                 <input type="number" id="minPrice" placeholder="от" value="${catalogFilters.minPrice}">
                                 <input type="number" id="maxPrice" placeholder="до" value="${catalogFilters.maxPrice}">
@@ -1269,20 +1291,21 @@
                         <div class="filter-group">
                             <h4>Категория</h4>
                             <select id="categoryFilter">
-                                <option value="all" ${catalogFilters.category === 'all' ? 'selected' : ''}>Все</option>
+                                <option value="all" ${catalogFilters.category === 'all' ? 'selected' : ''}>Все товары</option>
                                 <option value="laptop" ${catalogFilters.category === 'laptop' ? 'selected' : ''}>Ноутбуки</option>
                                 <option value="pc" ${catalogFilters.category === 'pc' ? 'selected' : ''}>Компьютеры</option>
                                 <option value="peripheral" ${catalogFilters.category === 'peripheral' ? 'selected' : ''}>Периферия</option>
+                                <option value="accessory" ${catalogFilters.category === 'accessory' ? 'selected' : ''}>Аксессуары</option>
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label><input type="checkbox" id="inStockOnly" ${catalogFilters.inStockOnly ? 'checked' : ''}> Только в наличии</label>
+                            <label><input type="checkbox" id="inStockOnly" ${catalogFilters.inStockOnly ? 'checked' : ''}> <i class="fas fa-check-circle"></i> Только в наличии</label>
                         </div>
-                        <button class="btn-secondary" onclick="resetFilters()">Сбросить фильтры</button>
+                        <button class="btn-secondary" onclick="resetFilters()"><i class="fas fa-undo"></i> Сбросить фильтры</button>
                     </aside>
                     <div class="catalog-content">
                         <div class="catalog-header">
-                            <h2>Каталог товаров</h2>
+                            <h2><i class="fas fa-list"></i> Каталог товаров</h2>
                             <select id="sortSelect">
                                 <option value="default" ${catalogFilters.sort === 'default' ? 'selected' : ''}>По умолчанию</option>
                                 <option value="price-asc" ${catalogFilters.sort === 'price-asc' ? 'selected' : ''}>Цена: по возрастанию</option>
@@ -1290,7 +1313,7 @@
                                 <option value="rating" ${catalogFilters.sort === 'rating' ? 'selected' : ''}>По рейтингу</option>
                             </select>
                         </div>
-                        <div class="products-grid">${filtered.length > 0 ? filtered.map(p => renderProductCard(p)).join('') : '<div class="empty-state"><i class="fas fa-search"></i><p>Товары не найдены</p></div>'}</div>
+                        <div class="products-grid">${filtered.length > 0 ? filtered.map(p => renderProductCard(p)).join('') : '<div class="empty-state"><i class="fas fa-search"></i><p>Товары не найдены</p><button class="btn-primary" onclick="resetFilters()" style="margin-top:20px">Сбросить фильтры</button></div>'}</div>
                     </div>
                 </div>
             </div>
@@ -1306,7 +1329,7 @@
             renderCatalog();
         });
         document.getElementById('maxPrice')?.addEventListener('change', (e) => {
-            catalogFilters.maxPrice = parseInt(e.target.value) || 500000;
+            catalogFilters.maxPrice = parseInt(e.target.value) || 350000;
             renderCatalog();
         });
         document.getElementById('categoryFilter')?.addEventListener('change', (e) => {
@@ -1327,7 +1350,7 @@
         catalogFilters = {
             search: catalogFilters.search,
             minPrice: 0,
-            maxPrice: 500000,
+            maxPrice: 350000,
             category: 'all',
             inStockOnly: false,
             sort: 'default'
@@ -1349,32 +1372,36 @@
             return;
         }
         
-        const total = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+        let total = 0;
+        const cartItems = cart.map(item => {
+            const product = products.find(p => p.id === item.product_id);
+            if (!product) return null;
+            total += product.price * item.quantity;
+            return `
+                <div class="cart-item">
+                    <div class="cart-icon"><i class="fas ${product.icon}"></i></div>
+                    <div class="cart-item-info">
+                        <h4>${product.name}</h4>
+                        <div class="cart-item-price">${product.price.toLocaleString()} тг</div>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button onclick="updateCartQuantity(${item.product_id}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="updateCartQuantity(${item.product_id}, 1)">+</button>
+                    </div>
+                    <button class="cart-item-remove" onclick="updateCartQuantity(${item.product_id}, -${item.quantity})"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            `;
+        }).filter(item => item !== null);
         
         document.getElementById('mainContent').innerHTML = `
             <div class="container">
-                <h2 class="section-title">Корзина</h2>
-                <div class="cart-container">
-                    ${cart.map(item => `
-                        <div class="cart-item">
-                            <img src="${item.product.image}" onerror="this.src='https://via.placeholder.com/80x80?text=No+Image'" alt="${item.product.name}">
-                            <div class="cart-item-info">
-                                <h4>${item.product.name}</h4>
-                                <div class="cart-item-price">${item.product.price.toLocaleString()} тг</div>
-                            </div>
-                            <div class="cart-item-quantity">
-                                <button onclick="updateCartQuantity(${item.product_id}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button onclick="updateCartQuantity(${item.product_id}, 1)">+</button>
-                            </div>
-                            <button class="cart-item-remove" onclick="updateCartQuantity(${item.product_id}, -${item.quantity})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    `).join('')}
-                </div>
+                <h2 class="section-title"><i class="fas fa-shopping-cart"></i> Корзина</h2>
+                <div class="cart-container">${cartItems.join('')}</div>
                 <div class="cart-summary">
-                    <h3>Итого:</h3>
+                    <h3>Итого к оплате:</h3>
                     <div class="total">${total.toLocaleString()} тг</div>
-                    <button class="btn-primary" onclick="showModal('Оформление заказа в разработке')">Оформить заказ</button>
+                    <button class="btn-primary" onclick="showModal('Спасибо за заказ! В ближайшее время с вами свяжется оператор.')"><i class="fas fa-check"></i> Оформить заказ</button>
                 </div>
             </div>
         `;
@@ -1384,8 +1411,8 @@
         const favoriteProducts = products.filter(p => favorites.has(p.id));
         document.getElementById('mainContent').innerHTML = `
             <div class="container">
-                <h2 class="section-title">Избранное</h2>
-                <div class="products-grid">${favoriteProducts.length > 0 ? favoriteProducts.map(p => renderProductCard(p)).join('') : '<div class="empty-state"><i class="far fa-heart"></i><p>Нет избранных товаров</p></div>'}</div>
+                <h2 class="section-title"><i class="far fa-heart"></i> Избранное</h2>
+                <div class="products-grid">${favoriteProducts.length > 0 ? favoriteProducts.map(p => renderProductCard(p)).join('') : '<div class="empty-state"><i class="far fa-heart"></i><p>Нет избранных товаров</p><button class="btn-primary" onclick="showPage(\'catalog\')" style="margin-top:20px">Перейти в каталог</button></div>'}</div>
             </div>
         `;
     }
@@ -1395,21 +1422,22 @@
             <div class="container">
                 <div class="about-page">
                     <div class="about-hero">
-                        <h1>О компании ТЕКНО-MIR</h1>
+                        <h1><i class="fas fa-info-circle"></i> О компании ТЕКНО-MIR</h1>
                         <p>Ваш надежный партнер в мире гейминга и высоких технологий</p>
                     </div>
                     <div class="about-content">
                         <h2>Кто мы?</h2>
-                        <p>ТЕКНО-MIR — ведущий retailer игровой техники в Казахстане. С 2018 года мы помогаем геймерам находить идеальное оборудование для своих задач.</p>
+                        <p>ТЕКНО-MIR — ведущий ритейлер игровой техники в Казахстане. С 2018 года мы помогаем геймерам находить идеальное оборудование для своих задач. Наша команда — это эксперты, которые сами являются геймерами и знают, что нужно для комфортной игры.</p>
                         <h2>Наша миссия</h2>
-                        <p>Сделать качественный гейминг доступным каждому. Мы отбираем только лучшие модели, протестированные нашими экспертами.</p>
+                        <p>Сделать качественный гейминг доступным каждому. Мы отбираем только лучшие модели, протестированные нашими экспертами, и предлагаем их по оптимальным ценам.</p>
                         <h2>Почему выбирают нас?</h2>
                         <ul>
-                            <li>✅ Официальная гарантия от 12 месяцев</li>
-                            <li>✅ Рассрочка без переплат от Halyk Bank</li>
-                            <li>✅ Бесплатная доставка по Алматы</li>
-                            <li>✅ Реальный тест-драйв в шоу-руме</li>
-                            <li>✅ Более 500 товаров в наличии</li>
+                            <li>✅ Официальная гарантия от 12 месяцев на всю технику</li>
+                            <li>✅ Рассрочка без переплат от Halyk Bank и других банков</li>
+                            <li>✅ Бесплатная доставка по Алматы при заказе от 100 000 тг</li>
+                            <li>✅ Реальный тест-драйв в нашем шоу-руме</li>
+                            <li>✅ Более 50 брендов в ассортименте</li>
+                            <li>✅ Профессиональная консультация перед покупкой</li>
                         </ul>
                     </div>
                 </div>
@@ -1422,14 +1450,14 @@
             <div class="container">
                 <div class="contacts-page">
                     <div class="contacts-info">
-                        <h2>Наши контакты</h2>
-                        <div class="contact-card"><i class="fas fa-map-marker-alt"></i><div><h3>Адрес</h3><p>г. Алматы, ул. Каныша Сатпаева, 18А</p></div></div>
-                        <div class="contact-card"><i class="fas fa-phone"></i><div><h3>Телефон</h3><p>+7 (727) 123-45-67</p><p>+7 (777) 123-45-67</p></div></div>
+                        <h2><i class="fas fa-address-card"></i> Наши контакты</h2>
+                        <div class="contact-card"><i class="fas fa-map-marker-alt"></i><div><h3>Адрес</h3><p>г. Алматы, ул. Каныша Сатпаева, 18А</p><p><small>Ежедневно с 10:00 до 20:00</small></p></div></div>
+                        <div class="contact-card"><i class="fas fa-phone"></i><div><h3>Телефоны</h3><p>+7 (727) 123-45-67</p><p>+7 (777) 123-45-67</p><p><small>WhatsApp: +7 (777) 123-45-67</small></p></div></div>
                         <div class="contact-card"><i class="fas fa-envelope"></i><div><h3>Email</h3><p>info@tekno-mir.kz</p><p>sales@tekno-mir.kz</p></div></div>
-                        <div class="contact-card"><i class="fas fa-clock"></i><div><h3>Режим работы</h3><p>Пн-Пт: 10:00 - 20:00</p><p>Сб-Вс: 11:00 - 18:00</p></div></div>
+                        <div class="contact-card"><i class="fas fa-clock"></i><div><h3>Режим работы</h3><p>Пн-Пт: 10:00 - 20:00</p><p>Сб-Вс: 11:00 - 18:00</p><p><small>Без перерыва</small></p></div></div>
                     </div>
                     <div class="contacts-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.8421052631577!2d76.899474!3d43.238442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836e8d33f5bcb1%3A0x8e6f3e5f7d9a6c3d!2z0YPQuy4g0JrQsNC90YvRiNCwINCh0LDRgtC_0LDQtdCy0LAgMTjQkCwg0JDQu9C80LDRgtGLLCDQmtCw0LfQsNGF0YHRgtCw0L0!5e0!3m2!1sru!2skz!4v1700000000000!5m2!1sru!2skz" allowfullscreen loading="lazy"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.8421052631577!2d76.899474!3d43.238442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836e8d33f5bcb1%3A0x8e6f3e5f7d9a6c3d!2z0YPQuy4g0JrQsNC90YvRiNCwINCh0LDRgtC_0LDQtdCy0LAgMTjQkCwg0JDQu9C80LDRgtGLLCDQmtC0LNCk!5e0!3m2!1sru!2skz!4v1700000000000!5m2!1sru!2skz" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -1437,14 +1465,8 @@
     }
     
     // ============= ЗАПУСК =============
-    async function init() {
-        await loadProducts();
-        await loadFavorites();
-        await loadCart();
-        renderHome();
-    }
-    
-    init();
+    loadData();
+    renderHome();
 </script>
 </body>
 </html>
