@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Учебная платформа | Трекер учебы</title>
+    <title>ТЕКНО-MIR | Мощные новинки гейминг без границ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,918 +14,1047 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            padding: 0 20px;
         }
 
-        .full-width {
-            grid-column: span 2;
-        }
-
-        .card {
-            background: white;
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 16px;
-            color: #1e293b;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-            margin-bottom: 16px;
-            color: #1e293b;
-            border-left: 4px solid #667eea;
-            padding-left: 12px;
-        }
-
-        .btn-google {
-            background: #4285F4;
-            color: white;
-            border: none;
-            border-radius: 40px;
-            padding: 14px 28px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: transform 0.2s;
-        }
-
-        .btn-google:hover {
-            transform: translateY(-2px);
-        }
-
-        .profile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            background: #f8fafc;
-            padding: 16px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .avatar {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: white;
-        }
-
-        .user-name {
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .user-email {
-            font-size: 0.8rem;
-            color: #64748b;
-        }
-
-        .logout-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 40px;
-            padding: 8px 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-
-        .logout-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .timer-card {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .timer-display {
-            font-family: monospace;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #facc15;
-        }
-
-        .total-study {
-            color: #94a3b8;
-            margin: 12px 0;
-            font-size: 0.9rem;
-        }
-
-        .session-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            border: none;
-            border-radius: 40px;
-            padding: 10px 24px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
-
-        .btn:active {
-            transform: scale(0.95);
-        }
-
-        .btn-start { background: #10b981; color: white; }
-        .btn-pause { background: #f59e0b; color: #1e293b; }
-        .btn-end { background: #ef4444; color: white; }
-
-        .user-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #e2e8f0;
-            transition: background 0.2s;
-        }
-
-        .user-item:hover {
-            background: #f1f5f9;
-        }
-
-        .user-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .online-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #22c55e;
-            box-shadow: 0 0 0 2px #fff;
-        }
-
-        .offline-dot {
-            background: #94a3b8;
-        }
-
-        .status-badge {
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 20px;
-            background: #e2e8f0;
-        }
-
-        .leaderboard-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
-            border-bottom: 1px solid #e2e8f0;
-            transition: background 0.2s;
-        }
-
-        .leaderboard-item:hover {
-            background: #f1f5f9;
-        }
-
-        .medal {
-            font-size: 1.5rem;
-            min-width: 40px;
-        }
-
-        .study-time {
-            font-weight: bold;
-            color: #f59e0b;
-        }
-
-        .chat-messages {
-            height: 300px;
-            overflow-y: auto;
-            background: #f8fafc;
-            border-radius: 20px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-
-        .message {
-            background: white;
-            border-radius: 18px;
-            padding: 10px 16px;
-            margin-bottom: 12px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-
-        .message strong {
-            color: #4f46e5;
-        }
-
-        .message-time {
-            font-size: 0.7rem;
-            color: #94a3b8;
-            margin-left: 12px;
-        }
-
-        .chat-input {
-            display: flex;
-            gap: 12px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            transition: border 0.2s;
-        }
-
-        .chat-input input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .send-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 40px;
-            padding: 0 24px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .send-btn:hover {
-            background: #5b67b3;
-        }
-
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
-        }
-
-        .achievement-card {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 16px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .achievement-card.unlocked {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 2px solid #f59e0b;
-            transform: scale(1.02);
-        }
-
-        .achievement-card.locked {
-            opacity: 0.5;
-            filter: grayscale(100%);
-        }
-
-        .achievement-icon {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
-        }
-
-        .achievement-title {
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 4px;
-            color: #1e293b;
-        }
-
-        .achievement-desc {
-            font-size: 0.7rem;
-            color: #64748b;
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            animation: slideIn 0.3s ease-out;
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            border-bottom: 1px solid rgba(255, 107, 0, 0.3);
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .hidden {
-            display: none;
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #ff6b00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #64748b;
+        .logo span {
+            color: #ff6b00;
+            -webkit-text-fill-color: #ff6b00;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+        .logo p {
+            font-size: 12px;
+            color: #ff6b00;
+            margin-top: 5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .search-bar {
+            display: flex;
+            background: #2a2a2a;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .search-bar input {
+            padding: 12px 20px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            width: 300px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            background: #ff6b00;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #ff8533;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon-btn {
+            position: relative;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .icon-btn:hover {
+            color: #ff6b00;
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #ff6b00;
+            color: #fff;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 5px 0;
+            cursor: pointer;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            color: #ff6b00;
+            border-bottom: 2px solid #ff6b00;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a0a 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .hero h3 {
+            font-size: 36px;
+            color: #ff6b00;
             margin-bottom: 20px;
         }
 
-        .stat-card {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 16px;
-            text-align: center;
-            transition: transform 0.2s;
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
         }
 
-        .stat-card:hover {
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #ff6b00;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background: #ff8533;
             transform: translateY(-2px);
         }
 
-        .stat-value {
-            font-size: 1.8rem;
+        .btn-secondary {
+            padding: 12px 25px;
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #555;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #ff6b00;
+            margin: 15px auto 0;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 80px 0;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: #1a1a1a;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            background: #222;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.2);
+        }
+
+        .category-card i {
+            font-size: 48px;
+            color: #ff6b00;
+            margin-bottom: 20px;
+        }
+
+        .category-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10;
+            border: none;
+        }
+
+        .favorite-btn.active {
+            color: #ff0000;
+        }
+
+        .favorite-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            min-height: 50px;
+        }
+
+        .rating {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 24px;
             font-weight: 700;
-            color: #4f46e5;
+            color: #ff6b00;
+            margin-bottom: 5px;
         }
 
-        .stat-label {
-            font-size: 0.75rem;
-            color: #64748b;
-            margin-top: 4px;
+        .old-price {
+            font-size: 16px;
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 10px;
         }
 
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: #ff6b00;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        .add-to-cart:hover {
+            background: #ff8533;
+        }
+
+        /* Advantages */
+        .advantages {
+            background: #111;
+            padding: 60px 0;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .advantage-item i {
+            font-size: 40px;
+            color: #ff6b00;
+            margin-bottom: 15px;
+        }
+
+        /* Catalog Page */
+        .catalog-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            padding: 40px 0;
+        }
+
+        .filters {
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group h4 {
+            margin-bottom: 15px;
+            color: #ff6b00;
+        }
+
+        #priceRange {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .price-inputs input {
+            flex: 1;
+            padding: 8px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 10px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .catalog-header select {
+            padding: 10px 20px;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        /* Cart Page */
+        .cart-container {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto auto;
+            gap: 20px;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #444;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .cart-item-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #ff6b00;
+            font-weight: 700;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .cart-item-quantity button {
+            width: 30px;
+            height: 30px;
+            background: #ff6b00;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #ff4444;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .cart-summary {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: right;
+        }
+
+        .cart-summary h3 {
+            margin-bottom: 15px;
+        }
+
+        .cart-summary .total {
+            font-size: 28px;
+            color: #ff6b00;
+            margin: 15px 0;
+        }
+
+        /* Contacts Page */
+        .contacts-page {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .contact-card {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-card i {
+            font-size: 32px;
+            color: #ff6b00;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .contacts-map {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .contacts-map iframe {
+            width: 100%;
+            height: 450px;
+        }
+
+        /* About Page */
+        .about-page {
+            padding: 60px 0;
+        }
+
+        .about-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .about-content h2 {
+            color: #ff6b00;
+            margin: 30px 0 15px;
+        }
+
+        .about-content ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .about-content li {
+            padding: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f0f;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid #222;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3, .footer-section h4 {
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #aaa;
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b00;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #666;
+        }
+
+        /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 40px;
-            color: #94a3b8;
+            padding: 60px;
+            background: #1a1a1a;
+            border-radius: 15px;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px;
+        }
+
+        .loading i {
+            font-size: 48px;
+            color: #ff6b00;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .catalog-layout, .contacts-page {
+                grid-template-columns: 1fr;
+            }
+            .header-top {
+                flex-direction: column;
+            }
+            .search-bar input {
+                width: 200px;
+            }
+            .hero h2 {
+                font-size: 32px;
+            }
+            .hero h3 {
+                font-size: 24px;
+            }
+            .cart-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="card full-width" id="authCard">
-        <h1>📚 Учебная платформа</h1>
-        <div id="authContent"><div class="loading">⏳ Загрузка...</div></div>
-    </div>
 
-    <div class="card full-width hidden" id="appCard">
-        <div class="profile-header">
-            <div class="user-info">
-                <div class="avatar" id="userAvatar">👤</div>
-                <div>
-                    <div class="user-name" id="userName"></div>
-                    <div class="user-email" id="userEmail"></div>
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="header-top">
+            <div class="logo">
+                <h1>ТЕКНО-<span>MIR</span></h1>
+                <p>Мощные новинки гейминг без границ</p>
+            </div>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" id="globalSearch" placeholder="Поиск товаров...">
+                    <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="action-icons">
+                    <button class="icon-btn" onclick="showPage('favorites')">
+                        <i class="far fa-heart"></i>
+                        <span class="badge" id="favoritesCount">0</span>
+                    </button>
+                    <button class="icon-btn" onclick="showPage('cart')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge" id="cartCount">0</span>
+                    </button>
                 </div>
             </div>
-            <button class="logout-btn" id="logoutBtn">🚪 Выйти</button>
         </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a onclick="showPage('home')" class="active" id="navHome">Главная</a></li>
+                <li><a onclick="showPage('catalog')" id="navCatalog">Каталог</a></li>
+                <li><a onclick="showPage('about')" id="navAbout">О нас</a></li>
+                <li><a onclick="showPage('contacts')" id="navContacts">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-        <div class="timer-card">
-            <div class="timer-display" id="timerDisplay">00:00:00</div>
-            <div class="total-study" id="totalStudyDisplay">📚 Всего учёбы: 0 минут</div>
-            <div class="session-buttons">
-                <button class="btn btn-start" id="startBtn">▶ Начать учиться</button>
-                <button class="btn btn-pause" id="pauseBtn">⏸ Сделать перерыв</button>
-                <button class="btn btn-end" id="endBtn">⏹ Завершить сессию</button>
+<main id="mainContent">
+    <div class="loading"><i class="fas fa-spinner"></i><p>Загрузка...</p></div>
+</main>
+
+<footer id="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ТЕКНО-MIR</h3>
+                <p>Мощные новинки гейминг без границ</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Информация</h4>
+                <ul>
+                    <li><a onclick="showPage('about')">О компании</a></li>
+                    <li><a onclick="showPage('contacts')">Контакты</a></li>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Возврат товара</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Каталог</h4>
+                <ul>
+                    <li><a onclick="showPage('catalog')">Игровые ноутбуки</a></li>
+                    <li><a onclick="showPage('catalog')">Игровые ПК</a></li>
+                    <li><a onclick="showPage('catalog')">Периферия</a></li>
+                    <li><a onclick="showPage('catalog')">Аксессуары</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +7 (727) 123-45-67</li>
+                    <li><i class="fas fa-envelope"></i> info@tekno-mir.kz</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Алматы, Сатпаева 18А</li>
+                </ul>
             </div>
         </div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value" id="sessionCount">0</div>
-                <div class="stat-label">Пройдено сессий</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="messageCount">0</div>
-                <div class="stat-label">Сообщений в чате</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="achievementCount">0/4</div>
-                <div class="stat-label">Получено достижений</div>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ТЕКНО-MIR. Все права защищены.</p>
         </div>
     </div>
+</footer>
 
-    <div class="card hidden" id="groupCard">
-        <h2>👥 Студенты онлайн <span id="onlineCount" style="color:#10b981;">0</span></h2>
-        <div id="groupList"></div>
-    </div>
-
-    <div class="card hidden" id="leaderboardCard">
-        <h2>🏆 Рейтинг студентов</h2>
-        <div id="leaderboardList"></div>
-    </div>
-
-    <div class="card full-width hidden" id="achievementsCard">
-        <h2>🎖 Мои достижения</h2>
-        <div id="achievementsList" class="achievements-grid"></div>
-    </div>
-
-    <div class="card full-width hidden" id="chatCard">
-        <h2>💬 Общий чат</h2>
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Напишите сообщение..." maxlength="300">
-            <button class="send-btn" id="sendBtn">📤 Отправить</button>
-        </div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <i class="fas fa-check-circle" style="font-size: 48px; color: #4caf50;"></i>
+        <p id="modalMessage">Товар добавлен в корзину!</p>
+        <button class="btn-primary" onclick="closeModal()" style="margin-top: 20px;">OK</button>
     </div>
 </div>
 
-<script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-    
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // ============= НАСТРОЙКИ SUPABASE =============
     const SUPABASE_URL = 'https://kwntvftilhfxvgzkftld.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3bnR2ZnRpbGhmeHZnemtmdGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODA2OTQsImV4cCI6MjA5MjI1NjY5NH0.ORjSkWPU984Acbe8uPa1qzLw6Qg7Hf8BxpA65sP-nPU';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3bnR2ZnRpbGhmeHZnemtmdGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODA2OTQsImV4cCI6MjA5MjI1NjY5NH0.ORjSkWPU984Acbe8uPa1qzLw6Qg7Hf8BxpA65sP-nPU';
     
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const sessionId = localStorage.getItem('sessionId') || 'user_' + Date.now() + '_' + Math.random();
+    localStorage.setItem('sessionId', sessionId);
     
-    let currentUser = null;
-    let sessionStartTime = null;
-    let totalSeconds = 0;
-    let timerInterval = null;
-    let currentSessionCount = 0;
+    let currentPage = 'home';
+    let products = [];
+    let favorites = new Set();
+    let cart = [];
     
-    const ACHIEVEMENTS = {
-        first_step: { 
-            id: 'first_step', 
-            title: '🎯 Первый шаг', 
-            desc: 'Завершил первую учебную сессию', 
-            icon: '🎯',
-            condition: 'Завершите первую сессию'
-        },
-        marathon: { 
-            id: 'marathon', 
-            title: '🏃 Марафонец', 
-            desc: 'Проучился более 2 часов за раз', 
-            icon: '🏃',
-            condition: 'Учитесь 2+ часа без перерыва'
-        },
-        activist: { 
-            id: 'activist', 
-            title: '💬 Активист', 
-            desc: 'Написал 20 сообщений в чате', 
-            icon: '💬',
-            condition: 'Напишите 20 сообщений'
-        },
-        early_bird: { 
-            id: 'early_bird', 
-            title: '🌅 Ранняя пташка', 
-            desc: 'Зашел на платформу до 8:00', 
-            icon: '🌅',
-            condition: 'Зайдите до 8 утра'
-        }
+    let catalogFilters = {
+        search: '',
+        minPrice: 0,
+        maxPrice: 500000,
+        category: 'all',
+        inStockOnly: false,
+        sort: 'default'
     };
     
-    function showNotification(message, title = '🎉 Достижение!') {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.innerHTML = `<strong>${title}</strong><br>${message}`;
-        document.body.appendChild(notification);
-        setTimeout(() => notification.remove(), 4000);
-    }
-    
-    async function unlockAchievement(achievementId) {
-        if (!currentUser) return false;
-        
-        const { data: profile } = await supabase
-            .from('profiles')
-            .select('achievements')
-            .eq('id', currentUser.id)
-            .single();
-        
-        let achievements = profile?.achievements || [];
-        if (achievements.includes(achievementId)) return false;
-        
-        achievements.push(achievementId);
-        
-        const { error } = await supabase
-            .from('profiles')
-            .update({ achievements: achievements })
-            .eq('id', currentUser.id);
-        
-        if (!error) {
-            const ach = ACHIEVEMENTS[achievementId];
-            showNotification(`${ach.title}\n${ach.desc}`, '🎉 НОВОЕ ДОСТИЖЕНИЕ!');
-            await loadAchievements();
-            await updateStats();
-            return true;
-        }
-        return false;
-    }
-    
-    function formatTime(seconds) {
-        const h = Math.floor(seconds / 3600);
-        const m = Math.floor((seconds % 3600) / 60);
-        const s = seconds % 60;
-        return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-    }
-    
-    function formatTotal(seconds) {
-        const h = Math.floor(seconds / 3600);
-        const m = Math.floor((seconds % 3600) / 60);
-        if (h > 0) return `${h} ч ${m} мин`;
-        return `${m} мин`;
-    }
-    
-    async function loadAchievements() {
-        if (!currentUser) return;
-        
-        const { data: profile } = await supabase
-            .from('profiles')
-            .select('achievements')
-            .eq('id', currentUser.id)
-            .single();
-        
-        const userAchievements = profile?.achievements || [];
-        const container = document.getElementById('achievementsList');
-        
-        container.innerHTML = Object.values(ACHIEVEMENTS).map(ach => {
-            const isUnlocked = userAchievements.includes(ach.id);
-            return `
-                <div class="achievement-card ${isUnlocked ? 'unlocked' : 'locked'}">
-                    <div class="achievement-icon">${ach.icon}</div>
-                    <div class="achievement-title">${ach.title}</div>
-                    <div class="achievement-desc">${isUnlocked ? ach.desc : ach.condition}</div>
-                    ${isUnlocked ? '<span style="font-size:0.7rem; color:#10b981;">✓ Получено</span>' : '<span style="font-size:0.7rem; color:#94a3b8;">🔒 Не получено</span>'}
-                </div>
-            `;
-        }).join('');
-        
-        const count = `${userAchievements.length}/${Object.keys(ACHIEVEMENTS).length}`;
-        document.getElementById('achievementCount').textContent = count;
-    }
-    
-    async function loadLeaderboard() {
-        const { data: topStudents } = await supabase
-            .from('profiles')
-            .select('username, total_study_seconds')
-            .order('total_study_seconds', { ascending: false })
-            .limit(10);
-        
-        const container = document.getElementById('leaderboardList');
-        
-        if (!topStudents || topStudents.length === 0) {
-            container.innerHTML = '<div class="empty-state">🏆 Пока нет участников</div>';
-            return;
-        }
-        
-        container.innerHTML = topStudents.map((student, index) => {
-            let medal = '';
-            if (index === 0) medal = '🥇';
-            else if (index === 1) medal = '🥈';
-            else if (index === 2) medal = '🥉';
-            else medal = `${index + 1}.`;
-            
-            return `
-                <div class="leaderboard-item">
-                    <div class="user-left">
-                        <span class="medal">${medal}</span>
-                        <strong>${escapeHtml(student.username || 'Студент')}</strong>
-                    </div>
-                    <div class="study-time">📚 ${formatTotal(student.total_study_seconds || 0)}</div>
-                </div>
-            `;
-        }).join('');
-    }
-    
-    async function loadMessages() {
-        const { data: messages } = await supabase
-            .from('messages')
-            .select('*')
-            .order('created_at', { ascending: true })
-            .limit(100);
-        
-        const container = document.getElementById('chatMessages');
-        if (!messages || messages.length === 0) {
-            container.innerHTML = '<div class="empty-state">💬 Напишите первое сообщение!</div>';
-            return;
-        }
-        
-        container.innerHTML = messages.map(msg => `
-            <div class="message">
-                <strong>${escapeHtml(msg.username)}</strong>
-                <span class="message-time">${new Date(msg.created_at).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}</span>
-                <div style="margin-top: 6px;">${escapeHtml(msg.message)}</div>
-            </div>
-        `).join('');
-        container.scrollTop = container.scrollHeight;
-    }
-    
-    async function loadGroupList() {
-        const { data: users } = await supabase
-            .from('profiles')
-            .select('username, status, last_seen')
-            .order('username');
-        
-        const container = document.getElementById('groupList');
-        
-        if (!users || users.length === 0) {
-            container.innerHTML = '<div class="empty-state">👥 Нет других пользователей</div>';
-            document.getElementById('onlineCount').textContent = '0';
-            return;
-        }
-        
-        const now = new Date();
-        const onlineUsers = users.filter(u => u.last_seen && new Date(u.last_seen) > new Date(now - 120000));
-        document.getElementById('onlineCount').textContent = onlineUsers.length;
-        
-        container.innerHTML = users.map(user => {
-            const isOnline = user.last_seen && new Date(user.last_seen) > new Date(now - 120000);
-            return `
-                <div class="user-item">
-                    <div class="user-left">
-                        <span class="online-dot ${!isOnline ? 'offline-dot' : ''}"></span>
-                        <strong>${escapeHtml(user.username || 'Аноним')}</strong>
-                        <span class="status-badge">${user.status || '🏠 Дома'}</span>
-                    </div>
-                    <div style="font-size: 0.75rem; color: ${isOnline ? '#10b981' : '#94a3b8'}">
-                        ${isOnline ? '🟢 онлайн' : '⚫ офлайн'}
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
-    
-    async function updateStats() {
-        if (!currentUser) return;
-        
-        const { data: profile } = await supabase
-            .from('profiles')
-            .select('message_count, achievements')
-            .eq('id', currentUser.id)
-            .single();
-        
-        if (profile) {
-            document.getElementById('messageCount').textContent = profile.message_count || 0;
-            const achievementCount = (profile.achievements?.length || 0);
-            document.getElementById('achievementCount').textContent = `${achievementCount}/${Object.keys(ACHIEVEMENTS).length}`;
-        }
-    }
-    
-    async function startSession() {
-        if (!currentUser || sessionStartTime) return;
-        
-        sessionStartTime = new Date();
-        await supabase.from('profiles').update({
-            study_session_start: sessionStartTime.toISOString(),
-            status: '📚 Учусь',
-            last_seen: new Date().toISOString()
-        }).eq('id', currentUser.id);
-        
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = setInterval(() => {
-            if (sessionStartTime) {
-                const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
-                document.getElementById('timerDisplay').textContent = formatTime(elapsed);
-            }
-        }, 1000);
-        
-        await loadGroupList();
-        showNotification('Сессия началась! Успехов в учебе! 📚', '▶️ Старт');
-    }
-    
-    async function pauseSession() {
-        if (!currentUser || !sessionStartTime) return;
-        
-        const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
-        if (elapsed > 0) {
-            totalSeconds += elapsed;
-            currentSessionCount++;
-            document.getElementById('sessionCount').textContent = currentSessionCount;
-            document.getElementById('totalStudyDisplay').textContent = `📚 Всего учёбы: ${formatTotal(totalSeconds)}`;
-            
-            if (currentSessionCount === 1) {
-                await unlockAchievement('first_step');
-            }
-            if (elapsed >= 7200) {
-                await unlockAchievement('marathon');
-            }
-        }
-        
-        sessionStartTime = null;
-        await supabase.from('profiles').update({
-            total_study_seconds: totalSeconds,
-            study_session_start: null,
-            status: '☕ Перерыв',
-            last_seen: new Date().toISOString()
-        }).eq('id', currentUser.id);
-        
-        if (timerInterval) clearInterval(timerInterval);
-        document.getElementById('timerDisplay').textContent = '00:00:00';
-        await loadGroupList();
-        await loadLeaderboard();
-        showNotification('Сессия завершена! Отдохните немного ☕', '⏸️ Перерыв');
-    }
-    
-    async function sendMessage() {
-        const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-        if (!text || !currentUser) return;
-        
-        const username = document.getElementById('userName').textContent;
-        
-        await supabase.from('messages').insert({
-            user_id: currentUser.id,
-            username: username,
-            message: text,
-            created_at: new Date().toISOString()
-        });
-        
-        const { data: profile } = await supabase
-            .from('profiles')
-            .select('message_count')
-            .eq('id', currentUser.id)
-            .single();
-        
-        const newCount = (profile?.message_count || 0) + 1;
-        await supabase.from('profiles')
-            .update({ message_count: newCount })
-            .eq('id', currentUser.id);
-        
-        if (newCount >= 20) {
-            await unlockAchievement('activist');
-        }
-        
-        input.value = '';
-        await loadMessages();
-        await updateStats();
-    }
-    
-    async function init() {
-        const { data: { user } } = await supabase.auth.getUser();
-        
-        if (user) {
-            currentUser = user;
-            console.log('Пользователь:', user.email);
-            
-            let { data: profile } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('id', user.id)
-                .single();
-            
-            if (!profile) {
-                console.log('Создаем профиль...');
-                await supabase.from('profiles').insert({
-                    id: user.id,
-                    username: user.user_metadata?.full_name || user.email.split('@')[0],
-                    avatar_url: user.user_metadata?.avatar_url,
-                    status: '🏠 Дома',
-                    total_study_seconds: 0,
-                    message_count: 0,
-                    achievements: [],
-                    last_seen: new Date().toISOString()
-                });
-                profile = { total_study_seconds: 0, message_count: 0, achievements: [] };
-            }
-            
-            totalSeconds = profile.total_study_seconds || 0;
-            currentSessionCount = 0;
-            
-            document.getElementById('totalStudyDisplay').textContent = `📚 Всего учёбы: ${formatTotal(totalSeconds)}`;
-            document.getElementById('userName').textContent = user.user_metadata?.full_name || user.email.split('@')[0];
-            document.getElementById('userEmail').textContent = user.email;
-            document.getElementById('userAvatar').textContent = (user.user_metadata?.full_name?.charAt(0) || user.email.charAt(0)).toUpperCase();
-            document.getElementById('sessionCount').textContent = '0';
-            
-            const hour = new Date().getHours();
-            if (hour < 8 || hour === 8) {
-                await unlockAchievement('early_bird');
-            }
-            
-            await loadAchievements();
-            await loadLeaderboard();
-            await loadMessages();
-            await loadGroupList();
-            await updateStats();
-            
-            // Восстановление сессии если была
-            if (profile.study_session_start && profile.status === '📚 Учусь') {
-                sessionStartTime = new Date(profile.study_session_start);
-                timerInterval = setInterval(() => {
-                    if (sessionStartTime) {
-                        const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
-                        document.getElementById('timerDisplay').textContent = formatTime(elapsed);
-                    }
-                }, 1000);
-            }
-            
-            document.getElementById('authCard').classList.add('hidden');
-            document.getElementById('appCard').classList.remove('hidden');
-            document.getElementById('groupCard').classList.remove('hidden');
-            document.getElementById('leaderboardCard').classList.remove('hidden');
-            document.getElementById('achievementsCard').classList.remove('hidden');
-            document.getElementById('chatCard').classList.remove('hidden');
-            
-            // Обновление last_seen
-            setInterval(async () => {
-                if (currentUser) {
-                    await supabase.from('profiles')
-                        .update({ last_seen: new Date().toISOString() })
-                        .eq('id', currentUser.id);
-                }
-            }, 30000);
-            
-            // Обновление списков
-            setInterval(() => {
-                loadGroupList();
-                loadLeaderboard();
-            }, 10000);
-            
-            // Realtime подписки
-            supabase.channel('public')
-                .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, () => loadMessages())
-                .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'profiles' }, () => {
-                    loadGroupList();
-                    loadLeaderboard();
-                })
-                .subscribe();
+    // ============= ИНИЦИАЛИЗАЦИЯ ТАБЛИЦ В SUPABASE =============
+    async function initDatabase() {
+        // Создаем таблицу products если её нет
+        const { error: createError } = await supabase.rpc('exec_sql', {
+            sql: `
+                CREATE TABLE IF NOT EXISTS products (
+                    id SERIAL PRIMARY KEY,
+                    name TEXT NOT NULL,
+                    price INTEGER NOT NULL,
+                    old_price INTEGER,
+                    image TEXT,
+                    category TEXT DEFAULT 'laptop',
+                    rating DECIMAL(2,1) DEFAULT 4.5,
+                    in_stock BOOLEAN DEFAULT true,
+                    created_at TIMESTAMP DEFAULT NOW()
+                );
                 
+                CREATE TABLE IF NOT EXISTS favorites (
+                    id SERIAL PRIMARY KEY,
+                    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+                    session_id TEXT,
+                    created_at TIMESTAMP DEFAULT NOW()
+                );
+                
+                CREATE TABLE IF NOT EXISTS cart (
+                    id SERIAL PRIMARY KEY,
+                    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+                    quantity INTEGER DEFAULT 1,
+                    session_id TEXT,
+                    created_at TIMESTAMP DEFAULT NOW()
+                );
+                
+                -- Добавляем товары если таблица пуста
+                INSERT INTO products (name, price, old_price, image, category, rating)
+                SELECT * FROM (VALUES
+                    ('ASUS TUF Gaming F15', 89990, 99990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.8),
+                    ('ASUS TUF Gaming F17', 99990, 109990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.7),
+                    ('MSI Katana 15', 109990, 129990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.9),
+                    ('Lenovo Legion 5', 119990, 139990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.8),
+                    ('Acer Nitro 5', 79990, 89990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.6),
+                    ('HP Victus 16', 84990, 94990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.7),
+                    ('Dell G15', 114990, 124990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.8),
+                    ('Apple MacBook Pro', 499990, 549990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.9)
+                ) AS v(name, price, old_price, image, category, rating)
+                WHERE NOT EXISTS (SELECT 1 FROM products LIMIT 1);
+            `
+        });
+        
+        if (createError) console.warn('Таблицы уже существуют или нет прав на создание:', createError);
+    }
+    
+    // ============= ЗАГРУЗКА ДАННЫХ =============
+    async function loadProducts() {
+        const { data, error } = await supabase.from('products').select('*');
+        if (!error && data) {
+            products = data;
         } else {
-            document.getElementById('authContent').innerHTML = `
-                <button class="btn-google" id="googleLoginBtn">
-                    🚀 Войти через Google
-                </button>
-                <p style="margin-top: 20px; text-align: center; color: #64748b;">
-                    📚 Отслеживайте время учебы<br>
-                    🏆 Соревнуйтесь с друзьями<br>
-                    🎖 Получайте достижения
-                </p>
-            `;
-            document.getElementById('googleLoginBtn')?.addEventListener('click', async () => {
-                const { error } = await supabase.auth.signInWithOAuth({
-                    provider: 'google',
-                    options: { redirectTo: window.location.href }
-                });
-                if (error) alert('Ошибка: ' + error.message);
-            });
+            console.warn('Ошибка загрузки товаров, используем локальные');
+            products = [
+                { id: 1, name: 'ASUS TUF Gaming F15', price: 89990, old_price: 99990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
+                { id: 2, name: 'ASUS TUF Gaming F17', price: 99990, old_price: 109990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
+                { id: 3, name: 'MSI Katana 15', price: 109990, old_price: 129990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true },
+                { id: 4, name: 'Lenovo Legion 5', price: 119990, old_price: 139990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
+                { id: 5, name: 'Acer Nitro 5', price: 79990, old_price: 89990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.6, in_stock: true },
+                { id: 6, name: 'HP Victus 16', price: 84990, old_price: 94990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
+                { id: 7, name: 'Dell G15', price: 114990, old_price: 124990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
+                { id: 8, name: 'Apple MacBook Pro', price: 499990, old_price: 549990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true }
+            ];
         }
     }
     
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, m => {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
+    async function loadFavorites() {
+        favorites.clear();
+        const { data } = await supabase.from('favorites').select('product_id').eq('session_id', sessionId);
+        if (data) data.forEach(f => favorites.add(f.product_id));
+        updateFavoritesCount();
     }
     
-    // Event listeners
-    document.getElementById('startBtn')?.addEventListener('click', startSession);
-    document.getElementById('pauseBtn')?.addEventListener('click', pauseSession);
-    document.getElementById('endBtn')?.addEventListener('click', pauseSession);
-    document.getElementById('logoutBtn')?.addEventListener('click', async () => {
-        await supabase.auth.signOut();
-        location.reload();
-    });
-    document.getElementById('sendBtn')?.addEventListener('click', sendMessage);
-    document.getElementById('chatInput')?.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
+    async function loadCart() {
+        cart = [];
+        const { data } = await supabase.from('cart').select('*').eq('session_id', sessionId);
+        if (data) {
+            for (const item of data) {
+                const product = products.find(p => p.id === item.product_id);
+                if (product) cart.push({ ...item, product });
+            }
+        }
+        updateCartCount();
+    }
     
-    init();
-</script>
-</body>
-</html>
+    async function toggleFavorite(productId) {
+        if (favorites.has(productId)) {
+            favorites.delete(productId);
+            await supabase.from('favorites').delete().eq('product_id', productId).eq('session_id', sessionId);
+        } else {
+            favorites.add(productId);
+            await supabase.from('favorites').insert({ product_id: productId, session_id: sessionId });
+        }
+        updateFavoritesCount();
+        renderCurrentPage();
+    }
+    
+    async function addToCart(productId, quantity = 1) {
+        const existing = cart.find(item => item.product_id === productId);
+        if (existing) {
+            existing.quantity += quantity;
+            await supabase.from('cart').update({ quantity: existing.quantity }).eq('id', existing.id);
+        } else {
+            const product = products.find(p => p.id === productId);
+            const { data } = await supabase.from('cart').insert({ product_id: productId, quantity, session_id: sessionId }).select();
+            if (data && data[0]) cart.push({ ...data[0], product });
+            else cart.push({ product_id: productId, quantity, session_id: sessionId, product });
+        }
+        updateCartCount();
+        showModal('Товар добавлен в корзину!');
+        renderCurrentPage();
+    }
+    
+    async function updateCartQuantity(productId, delta) {
+        const item = cart.find(i => i.product_id === productId);
+        if (item) {
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.product_id !== productId);
+                await supabase.from('cart').delete().eq('product_id', productId).eq('session_id', sessionId);
+            } else {
+                await supabase.from('cart').update({ quantity: item.quantity }).eq('id', item.id);
+            }
+        }
+        updateCartCount();
+        renderCurrentPage();
+    }
+    
+    function updateFavoritesCount() {
+        document.getElementById('favoritesCount').innerText = favorites.size;
+    }
+    
+    function updateCartCount() {
+        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cartCount').innerText = total;
+    }
+    
+    function showModal(message) {
+        document.getElementById('modalMessage').innerText = message;
+        document.getElementById('modal').style.display = 'flex';
+    }
+    
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+    
+    function searchProducts() {
+        const searchTerm = document.getElementById('globalSearch').value.toLowerCase();
+        catalogFilters.search = searchTerm;
+        showPage('catalog');
+    }
+    
+    function renderProductCard(product, showFavoriteBtn = true) {
+        const isFavorite = favorites.has(product.id);
+        return `
+            <div class="product-card" data-id="${product.id}">
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300x250?text=No+Image'">
+                    ${showFavoriteBtn ? `<button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id})"><i class="fas fa-heart"></i></button>` : ''}
+                </div>
+                <div class="product-info">
+                    <div class="product-title">${product.name}</div>
+                    <div class="rating">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''} (${product.rating})</div>
+                    <div class="price">${product.price.toLocaleString()} тг${product.old_price ? `<span class="old-price">${product.old_price.toLocaleString()} тг</span>` : ''}</div>
+                    <button class="add-to-cart" onclick="addToCart(${product.id})">В корзину</button>
+                </div>
+            </div>
+        `;
+    }
+    
+    function showPage(page) {
+        currentPage = page;
+        document.querySelectorAll('.nav-menu
