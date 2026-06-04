@@ -126,6 +126,8 @@
             font-size: 12px;
             padding: 2px 6px;
             border-radius: 50%;
+            min-width: 20px;
+            text-align: center;
         }
 
         /* Navigation */
@@ -272,6 +274,10 @@
             margin-bottom: 10px;
         }
 
+        .category-card p {
+            color: #888;
+        }
+
         /* Products Grid */
         .products-grid {
             display: grid;
@@ -406,6 +412,15 @@
             margin-bottom: 15px;
         }
 
+        .advantage-item h4 {
+            margin-bottom: 10px;
+        }
+
+        .advantage-item p {
+            color: #888;
+            font-size: 14px;
+        }
+
         /* Catalog Page */
         .catalog-layout {
             display: grid;
@@ -421,6 +436,11 @@
             height: fit-content;
             position: sticky;
             top: 100px;
+        }
+
+        .filters h3 {
+            margin-bottom: 20px;
+            color: #ff6b00;
         }
 
         .filter-group {
@@ -466,6 +486,10 @@
             cursor: pointer;
         }
 
+        .filter-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
         .catalog-header {
             display: flex;
             justify-content: space-between;
@@ -473,6 +497,10 @@
             margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 15px;
+        }
+
+        .catalog-header h2 {
+            font-size: 28px;
         }
 
         .catalog-header select {
@@ -498,6 +526,10 @@
             align-items: center;
             padding: 20px 0;
             border-bottom: 1px solid #444;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
         }
 
         .cart-item img {
@@ -529,6 +561,12 @@
             color: #fff;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+        }
+
+        .cart-item-quantity span {
+            min-width: 30px;
+            text-align: center;
         }
 
         .cart-item-remove {
@@ -564,6 +602,10 @@
             padding: 60px 0;
         }
 
+        .contacts-info h2 {
+            margin-bottom: 30px;
+        }
+
         .contact-card {
             display: flex;
             gap: 20px;
@@ -582,6 +624,10 @@
             margin-bottom: 10px;
         }
 
+        .contact-card p {
+            color: #aaa;
+        }
+
         .contacts-map {
             background: #1a1a1a;
             border-radius: 15px;
@@ -591,6 +637,7 @@
         .contacts-map iframe {
             width: 100%;
             height: 450px;
+            border: none;
         }
 
         /* About Page */
@@ -608,6 +655,11 @@
             margin-bottom: 20px;
         }
 
+        .about-hero p {
+            color: #aaa;
+            font-size: 18px;
+        }
+
         .about-content {
             background: #1a1a1a;
             padding: 40px;
@@ -619,6 +671,15 @@
             margin: 30px 0 15px;
         }
 
+        .about-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .about-content p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
         .about-content ul {
             list-style: none;
             margin-top: 20px;
@@ -626,6 +687,7 @@
 
         .about-content li {
             padding: 10px 0;
+            color: #ccc;
         }
 
         /* Footer */
@@ -698,6 +760,10 @@
             margin-bottom: 20px;
         }
 
+        .empty-state p {
+            color: #888;
+        }
+
         /* Modal */
         .modal {
             display: none;
@@ -720,10 +786,21 @@
             max-width: 400px;
         }
 
+        .modal-content i {
+            font-size: 48px;
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
         /* Loading */
         .loading {
             text-align: center;
-            padding: 60px;
+            padding: 80px;
         }
 
         .loading i {
@@ -757,6 +834,12 @@
             .cart-item {
                 grid-template-columns: 1fr;
                 text-align: center;
+            }
+            .cart-item-quantity {
+                justify-content: center;
+            }
+            .filters {
+                position: static;
             }
         }
     </style>
@@ -800,10 +883,10 @@
 </header>
 
 <main id="mainContent">
-    <div class="loading"><i class="fas fa-spinner"></i><p>Загрузка...</p></div>
+    <div class="loading"><i class="fas fa-spinner"></i><p>Загружаю...</p></div>
 </main>
 
-<footer id="footer">
+<footer>
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
@@ -850,9 +933,9 @@
 
 <div id="modal" class="modal">
     <div class="modal-content">
-        <i class="fas fa-check-circle" style="font-size: 48px; color: #4caf50;"></i>
+        <i class="fas fa-check-circle"></i>
         <p id="modalMessage">Товар добавлен в корзину!</p>
-        <button class="btn-primary" onclick="closeModal()" style="margin-top: 20px;">OK</button>
+        <button class="btn-primary" onclick="closeModal()">OK</button>
     </div>
 </div>
 
@@ -863,7 +946,7 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3bnR2ZnRpbGhmeHZnemtmdGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2ODA2OTQsImV4cCI6MjA5MjI1NjY5NH0.ORjSkWPU984Acbe8uPa1qzLw6Qg7Hf8BxpA65sP-nPU';
     
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const sessionId = localStorage.getItem('sessionId') || 'user_' + Date.now() + '_' + Math.random();
+    const sessionId = localStorage.getItem('sessionId') || 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
     localStorage.setItem('sessionId', sessionId);
     
     let currentPage = 'home';
@@ -880,63 +963,28 @@
         sort: 'default'
     };
     
-    // ============= ИНИЦИАЛИЗАЦИЯ ТАБЛИЦ В SUPABASE =============
-    async function initDatabase() {
-        // Создаем таблицу products если её нет
-        const { error: createError } = await supabase.rpc('exec_sql', {
-            sql: `
-                CREATE TABLE IF NOT EXISTS products (
-                    id SERIAL PRIMARY KEY,
-                    name TEXT NOT NULL,
-                    price INTEGER NOT NULL,
-                    old_price INTEGER,
-                    image TEXT,
-                    category TEXT DEFAULT 'laptop',
-                    rating DECIMAL(2,1) DEFAULT 4.5,
-                    in_stock BOOLEAN DEFAULT true,
-                    created_at TIMESTAMP DEFAULT NOW()
-                );
-                
-                CREATE TABLE IF NOT EXISTS favorites (
-                    id SERIAL PRIMARY KEY,
-                    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
-                    session_id TEXT,
-                    created_at TIMESTAMP DEFAULT NOW()
-                );
-                
-                CREATE TABLE IF NOT EXISTS cart (
-                    id SERIAL PRIMARY KEY,
-                    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
-                    quantity INTEGER DEFAULT 1,
-                    session_id TEXT,
-                    created_at TIMESTAMP DEFAULT NOW()
-                );
-                
-                -- Добавляем товары если таблица пуста
-                INSERT INTO products (name, price, old_price, image, category, rating)
-                SELECT * FROM (VALUES
-                    ('ASUS TUF Gaming F15', 89990, 99990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.8),
-                    ('ASUS TUF Gaming F17', 99990, 109990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.7),
-                    ('MSI Katana 15', 109990, 129990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.9),
-                    ('Lenovo Legion 5', 119990, 139990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.8),
-                    ('Acer Nitro 5', 79990, 89990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.6),
-                    ('HP Victus 16', 84990, 94990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.7),
-                    ('Dell G15', 114990, 124990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.8),
-                    ('Apple MacBook Pro', 499990, 549990, 'https://resources.chainbox.io/7/public_pim/png/124654.png', 'laptop', 4.9)
-                ) AS v(name, price, old_price, image, category, rating)
-                WHERE NOT EXISTS (SELECT 1 FROM products LIMIT 1);
-            `
-        });
-        
-        if (createError) console.warn('Таблицы уже существуют или нет прав на создание:', createError);
-    }
-    
     // ============= ЗАГРУЗКА ДАННЫХ =============
     async function loadProducts() {
-        const { data, error } = await supabase.from('products').select('*');
-        if (!error && data) {
-            products = data;
-        } else {
+        try {
+            const { data, error } = await supabase.from('products').select('*');
+            if (!error && data && data.length > 0) {
+                products = data;
+            } else {
+                // Локальные товары если Supabase не отвечает
+                products = [
+                    { id: 1, name: 'ASUS TUF Gaming F15', price: 89990, old_price: 99990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
+                    { id: 2, name: 'ASUS TUF Gaming F17', price: 99990, old_price: 109990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
+                    { id: 3, name: 'MSI Katana 15', price: 109990, old_price: 129990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true },
+                    { id: 4, name: 'Lenovo Legion 5', price: 119990, old_price: 139990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
+                    { id: 5, name: 'Acer Nitro 5', price: 79990, old_price: 89990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.6, in_stock: true },
+                    { id: 6, name: 'HP Victus 16', price: 84990, old_price: 94990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
+                    { id: 7, name: 'Dell G15', price: 114990, old_price: 124990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
+                    { id: 8, name: 'Apple MacBook Pro M3', price: 499990, old_price: 549990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true },
+                    { id: 9, name: 'ASUS ROG Strix G16', price: 159990, old_price: 179990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true },
+                    { id: 10, name: 'MSI Stealth 14', price: 189990, old_price: 209990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true }
+                ];
+            }
+        } catch(e) {
             console.warn('Ошибка загрузки товаров, используем локальные');
             products = [
                 { id: 1, name: 'ASUS TUF Gaming F15', price: 89990, old_price: 99990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
@@ -946,25 +994,41 @@
                 { id: 5, name: 'Acer Nitro 5', price: 79990, old_price: 89990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.6, in_stock: true },
                 { id: 6, name: 'HP Victus 16', price: 84990, old_price: 94990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.7, in_stock: true },
                 { id: 7, name: 'Dell G15', price: 114990, old_price: 124990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.8, in_stock: true },
-                { id: 8, name: 'Apple MacBook Pro', price: 499990, old_price: 549990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true }
+                { id: 8, name: 'Apple MacBook Pro M3', price: 499990, old_price: 549990, image: 'https://resources.chainbox.io/7/public_pim/png/124654.png', category: 'laptop', rating: 4.9, in_stock: true }
             ];
         }
     }
     
     async function loadFavorites() {
-        favorites.clear();
-        const { data } = await supabase.from('favorites').select('product_id').eq('session_id', sessionId);
-        if (data) data.forEach(f => favorites.add(f.product_id));
+        try {
+            favorites.clear();
+            const { data } = await supabase.from('favorites').select('product_id').eq('session_id', sessionId);
+            if (data) data.forEach(f => favorites.add(f.product_id));
+        } catch(e) {
+            const saved = localStorage.getItem('favorites_' + sessionId);
+            if (saved) JSON.parse(saved).forEach(id => favorites.add(id));
+        }
         updateFavoritesCount();
     }
     
     async function loadCart() {
-        cart = [];
-        const { data } = await supabase.from('cart').select('*').eq('session_id', sessionId);
-        if (data) {
-            for (const item of data) {
-                const product = products.find(p => p.id === item.product_id);
-                if (product) cart.push({ ...item, product });
+        try {
+            cart = [];
+            const { data } = await supabase.from('cart').select('*').eq('session_id', sessionId);
+            if (data) {
+                for (const item of data) {
+                    const product = products.find(p => p.id === item.product_id);
+                    if (product) cart.push({ ...item, product });
+                }
+            }
+        } catch(e) {
+            const saved = localStorage.getItem('cart_' + sessionId);
+            if (saved) {
+                const savedCart = JSON.parse(saved);
+                for (const item of savedCart) {
+                    const product = products.find(p => p.id === item.product_id);
+                    if (product) cart.push({ ...item, product });
+                }
             }
         }
         updateCartCount();
@@ -973,10 +1037,18 @@
     async function toggleFavorite(productId) {
         if (favorites.has(productId)) {
             favorites.delete(productId);
-            await supabase.from('favorites').delete().eq('product_id', productId).eq('session_id', sessionId);
+            try {
+                await supabase.from('favorites').delete().eq('product_id', productId).eq('session_id', sessionId);
+            } catch(e) {
+                localStorage.setItem('favorites_' + sessionId, JSON.stringify([...favorites]));
+            }
         } else {
             favorites.add(productId);
-            await supabase.from('favorites').insert({ product_id: productId, session_id: sessionId });
+            try {
+                await supabase.from('favorites').insert({ product_id: productId, session_id: sessionId });
+            } catch(e) {
+                localStorage.setItem('favorites_' + sessionId, JSON.stringify([...favorites]));
+            }
         }
         updateFavoritesCount();
         renderCurrentPage();
@@ -986,12 +1058,20 @@
         const existing = cart.find(item => item.product_id === productId);
         if (existing) {
             existing.quantity += quantity;
-            await supabase.from('cart').update({ quantity: existing.quantity }).eq('id', existing.id);
+            try {
+                await supabase.from('cart').update({ quantity: existing.quantity }).eq('id', existing.id);
+            } catch(e) {
+                localStorage.setItem('cart_' + sessionId, JSON.stringify(cart.map(c => ({ product_id: c.product_id, quantity: c.quantity }))));
+            }
         } else {
             const product = products.find(p => p.id === productId);
-            const { data } = await supabase.from('cart').insert({ product_id: productId, quantity, session_id: sessionId }).select();
-            if (data && data[0]) cart.push({ ...data[0], product });
-            else cart.push({ product_id: productId, quantity, session_id: sessionId, product });
+            const newItem = { product_id: productId, quantity, session_id: sessionId, product };
+            cart.push(newItem);
+            try {
+                await supabase.from('cart').insert({ product_id: productId, quantity, session_id: sessionId });
+            } catch(e) {
+                localStorage.setItem('cart_' + sessionId, JSON.stringify(cart.map(c => ({ product_id: c.product_id, quantity: c.quantity }))));
+            }
         }
         updateCartCount();
         showModal('Товар добавлен в корзину!');
@@ -1004,9 +1084,17 @@
             item.quantity += delta;
             if (item.quantity <= 0) {
                 cart = cart.filter(i => i.product_id !== productId);
-                await supabase.from('cart').delete().eq('product_id', productId).eq('session_id', sessionId);
+                try {
+                    await supabase.from('cart').delete().eq('product_id', productId).eq('session_id', sessionId);
+                } catch(e) {
+                    localStorage.setItem('cart_' + sessionId, JSON.stringify(cart.map(c => ({ product_id: c.product_id, quantity: c.quantity }))));
+                }
             } else {
-                await supabase.from('cart').update({ quantity: item.quantity }).eq('id', item.id);
+                try {
+                    await supabase.from('cart').update({ quantity: item.quantity }).eq('id', item.id);
+                } catch(e) {
+                    localStorage.setItem('cart_' + sessionId, JSON.stringify(cart.map(c => ({ product_id: c.product_id, quantity: c.quantity }))));
+                }
             }
         }
         updateCartCount();
@@ -1039,15 +1127,16 @@
     
     function renderProductCard(product, showFavoriteBtn = true) {
         const isFavorite = favorites.has(product.id);
+        const stars = '★'.repeat(Math.floor(product.rating)) + (product.rating % 1 >= 0.5 ? '½' : '');
         return `
-            <div class="product-card" data-id="${product.id}">
+            <div class="product-card">
                 <div class="product-image">
                     <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300x250?text=No+Image'">
                     ${showFavoriteBtn ? `<button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id})"><i class="fas fa-heart"></i></button>` : ''}
                 </div>
                 <div class="product-info">
                     <div class="product-title">${product.name}</div>
-                    <div class="rating">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''} (${product.rating})</div>
+                    <div class="rating">${stars} (${product.rating})</div>
                     <div class="price">${product.price.toLocaleString()} тг${product.old_price ? `<span class="old-price">${product.old_price.toLocaleString()} тг</span>` : ''}</div>
                     <button class="add-to-cart" onclick="addToCart(${product.id})">В корзину</button>
                 </div>
@@ -1055,6 +1144,307 @@
         `;
     }
     
+    // ============= СТРАНИЦЫ =============
     function showPage(page) {
         currentPage = page;
-        document.querySelectorAll('.nav-menu
+        document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+        const navMap = { home: 'navHome', catalog: 'navCatalog', about: 'navAbout', contacts: 'navContacts', favorites: 'navHome', cart: 'navHome' };
+        if (navMap[page]) {
+            const activeLink = document.getElementById(navMap[page]);
+            if (activeLink) activeLink.classList.add('active');
+        }
+        renderCurrentPage();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function renderCurrentPage() {
+        switch(currentPage) {
+            case 'home': renderHome(); break;
+            case 'catalog': renderCatalog(); break;
+            case 'cart': renderCart(); break;
+            case 'favorites': renderFavorites(); break;
+            case 'about': renderAbout(); break;
+            case 'contacts': renderContacts(); break;
+            default: renderHome();
+        }
+    }
+    
+    function renderHome() {
+        const featured = products.slice(0, 6);
+        document.getElementById('mainContent').innerHTML = `
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h2>Игровые ноутбуки</h2>
+                        <h3>Мощность без границ</h3>
+                        <p>Скидки до 30% на топовые модели</p>
+                        <button class="btn-primary" onclick="showPage('catalog')">Купить сейчас →</button>
+                    </div>
+                </div>
+            </section>
+            <section class="categories">
+                <div class="container">
+                    <h2 class="section-title">Популярные категории</h2>
+                    <div class="categories-grid">
+                        <div class="category-card" onclick="catalogFilters.category='laptop'; showPage('catalog')">
+                            <i class="fas fa-laptop-code"></i>
+                            <h3>Игровые ноутбуки</h3>
+                            <p>120+ моделей</p>
+                        </div>
+                        <div class="category-card" onclick="catalogFilters.category='pc'; showPage('catalog')">
+                            <i class="fas fa-desktop"></i>
+                            <h3>Игровые ПК</h3>
+                            <p>50+ сборок</p>
+                        </div>
+                        <div class="category-card" onclick="catalogFilters.category='peripheral'; showPage('catalog')">
+                            <i class="fas fa-keyboard"></i>
+                            <h3>Периферия</h3>
+                            <p>300+ товаров</p>
+                        </div>
+                        <div class="category-card" onclick="catalogFilters.category='accessory'; showPage('catalog')">
+                            <i class="fas fa-headset"></i>
+                            <h3>Гарнитуры</h3>
+                            <p>80+ моделей</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="featured">
+                <div class="container">
+                    <h2 class="section-title">Хиты продаж</h2>
+                    <div class="products-grid">${featured.map(p => renderProductCard(p)).join('')}</div>
+                </div>
+            </section>
+            <section class="advantages">
+                <div class="container">
+                    <div class="advantages-grid">
+                        <div class="advantage-item"><i class="fas fa-truck"></i><h4>Бесплатная доставка</h4><p>По Алматы от 100 000 тг</p></div>
+                        <div class="advantage-item"><i class="fas fa-shield-alt"></i><h4>Гарантия 12 месяцев</h4><p>Официальная гарантия</p></div>
+                        <div class="advantage-item"><i class="fas fa-credit-card"></i><h4>Рассрочка 0-0-12</h4><p>Без переплат</p></div>
+                        <div class="advantage-item"><i class="fas fa-store"></i><h4>Более 500 товаров</h4><p>В наличии на складе</p></div>
+                    </div>
+                </div>
+            </section>
+        `;
+    }
+    
+    function renderCatalog() {
+        let filtered = [...products];
+        
+        if (catalogFilters.search) {
+            filtered = filtered.filter(p => p.name.toLowerCase().includes(catalogFilters.search.toLowerCase()));
+        }
+        
+        filtered = filtered.filter(p => p.price >= catalogFilters.minPrice && p.price <= catalogFilters.maxPrice);
+        
+        if (catalogFilters.category !== 'all') {
+            filtered = filtered.filter(p => p.category === catalogFilters.category);
+        }
+        
+        if (catalogFilters.inStockOnly) {
+            filtered = filtered.filter(p => p.in_stock);
+        }
+        
+        if (catalogFilters.sort === 'price-asc') {
+            filtered.sort((a, b) => a.price - b.price);
+        } else if (catalogFilters.sort === 'price-desc') {
+            filtered.sort((a, b) => b.price - a.price);
+        } else if (catalogFilters.sort === 'rating') {
+            filtered.sort((a, b) => b.rating - a.rating);
+        }
+        
+        document.getElementById('mainContent').innerHTML = `
+            <div class="container">
+                <div class="catalog-layout">
+                    <aside class="filters">
+                        <h3>Фильтры</h3>
+                        <div class="filter-group">
+                            <h4>Цена (тг)</h4>
+                            <input type="range" id="priceRange" min="0" max="500000" step="10000" value="${catalogFilters.maxPrice}">
+                            <div class="price-inputs">
+                                <input type="number" id="minPrice" placeholder="от" value="${catalogFilters.minPrice}">
+                                <input type="number" id="maxPrice" placeholder="до" value="${catalogFilters.maxPrice}">
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <h4>Категория</h4>
+                            <select id="categoryFilter">
+                                <option value="all" ${catalogFilters.category === 'all' ? 'selected' : ''}>Все</option>
+                                <option value="laptop" ${catalogFilters.category === 'laptop' ? 'selected' : ''}>Ноутбуки</option>
+                                <option value="pc" ${catalogFilters.category === 'pc' ? 'selected' : ''}>Компьютеры</option>
+                                <option value="peripheral" ${catalogFilters.category === 'peripheral' ? 'selected' : ''}>Периферия</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label><input type="checkbox" id="inStockOnly" ${catalogFilters.inStockOnly ? 'checked' : ''}> Только в наличии</label>
+                        </div>
+                        <button class="btn-secondary" onclick="resetFilters()">Сбросить фильтры</button>
+                    </aside>
+                    <div class="catalog-content">
+                        <div class="catalog-header">
+                            <h2>Каталог товаров</h2>
+                            <select id="sortSelect">
+                                <option value="default" ${catalogFilters.sort === 'default' ? 'selected' : ''}>По умолчанию</option>
+                                <option value="price-asc" ${catalogFilters.sort === 'price-asc' ? 'selected' : ''}>Цена: по возрастанию</option>
+                                <option value="price-desc" ${catalogFilters.sort === 'price-desc' ? 'selected' : ''}>Цена: по убыванию</option>
+                                <option value="rating" ${catalogFilters.sort === 'rating' ? 'selected' : ''}>По рейтингу</option>
+                            </select>
+                        </div>
+                        <div class="products-grid">${filtered.length > 0 ? filtered.map(p => renderProductCard(p)).join('') : '<div class="empty-state"><i class="fas fa-search"></i><p>Товары не найдены</p></div>'}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('priceRange')?.addEventListener('input', (e) => {
+            catalogFilters.maxPrice = parseInt(e.target.value);
+            document.getElementById('maxPrice').value = catalogFilters.maxPrice;
+            renderCatalog();
+        });
+        document.getElementById('minPrice')?.addEventListener('change', (e) => {
+            catalogFilters.minPrice = parseInt(e.target.value) || 0;
+            renderCatalog();
+        });
+        document.getElementById('maxPrice')?.addEventListener('change', (e) => {
+            catalogFilters.maxPrice = parseInt(e.target.value) || 500000;
+            renderCatalog();
+        });
+        document.getElementById('categoryFilter')?.addEventListener('change', (e) => {
+            catalogFilters.category = e.target.value;
+            renderCatalog();
+        });
+        document.getElementById('inStockOnly')?.addEventListener('change', (e) => {
+            catalogFilters.inStockOnly = e.target.checked;
+            renderCatalog();
+        });
+        document.getElementById('sortSelect')?.addEventListener('change', (e) => {
+            catalogFilters.sort = e.target.value;
+            renderCatalog();
+        });
+    }
+    
+    function resetFilters() {
+        catalogFilters = {
+            search: catalogFilters.search,
+            minPrice: 0,
+            maxPrice: 500000,
+            category: 'all',
+            inStockOnly: false,
+            sort: 'default'
+        };
+        renderCatalog();
+    }
+    
+    function renderCart() {
+        if (cart.length === 0) {
+            document.getElementById('mainContent').innerHTML = `
+                <div class="container">
+                    <div class="empty-state">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Ваша корзина пуста</p>
+                        <button class="btn-primary" onclick="showPage('catalog')" style="margin-top: 20px;">Перейти в каталог</button>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        const total = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+        
+        document.getElementById('mainContent').innerHTML = `
+            <div class="container">
+                <h2 class="section-title">Корзина</h2>
+                <div class="cart-container">
+                    ${cart.map(item => `
+                        <div class="cart-item">
+                            <img src="${item.product.image}" onerror="this.src='https://via.placeholder.com/80x80?text=No+Image'" alt="${item.product.name}">
+                            <div class="cart-item-info">
+                                <h4>${item.product.name}</h4>
+                                <div class="cart-item-price">${item.product.price.toLocaleString()} тг</div>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button onclick="updateCartQuantity(${item.product_id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateCartQuantity(${item.product_id}, 1)">+</button>
+                            </div>
+                            <button class="cart-item-remove" onclick="updateCartQuantity(${item.product_id}, -${item.quantity})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="cart-summary">
+                    <h3>Итого:</h3>
+                    <div class="total">${total.toLocaleString()} тг</div>
+                    <button class="btn-primary" onclick="showModal('Оформление заказа в разработке')">Оформить заказ</button>
+                </div>
+            </div>
+        `;
+    }
+    
+    function renderFavorites() {
+        const favoriteProducts = products.filter(p => favorites.has(p.id));
+        document.getElementById('mainContent').innerHTML = `
+            <div class="container">
+                <h2 class="section-title">Избранное</h2>
+                <div class="products-grid">${favoriteProducts.length > 0 ? favoriteProducts.map(p => renderProductCard(p)).join('') : '<div class="empty-state"><i class="far fa-heart"></i><p>Нет избранных товаров</p></div>'}</div>
+            </div>
+        `;
+    }
+    
+    function renderAbout() {
+        document.getElementById('mainContent').innerHTML = `
+            <div class="container">
+                <div class="about-page">
+                    <div class="about-hero">
+                        <h1>О компании ТЕКНО-MIR</h1>
+                        <p>Ваш надежный партнер в мире гейминга и высоких технологий</p>
+                    </div>
+                    <div class="about-content">
+                        <h2>Кто мы?</h2>
+                        <p>ТЕКНО-MIR — ведущий retailer игровой техники в Казахстане. С 2018 года мы помогаем геймерам находить идеальное оборудование для своих задач.</p>
+                        <h2>Наша миссия</h2>
+                        <p>Сделать качественный гейминг доступным каждому. Мы отбираем только лучшие модели, протестированные нашими экспертами.</p>
+                        <h2>Почему выбирают нас?</h2>
+                        <ul>
+                            <li>✅ Официальная гарантия от 12 месяцев</li>
+                            <li>✅ Рассрочка без переплат от Halyk Bank</li>
+                            <li>✅ Бесплатная доставка по Алматы</li>
+                            <li>✅ Реальный тест-драйв в шоу-руме</li>
+                            <li>✅ Более 500 товаров в наличии</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    function renderContacts() {
+        document.getElementById('mainContent').innerHTML = `
+            <div class="container">
+                <div class="contacts-page">
+                    <div class="contacts-info">
+                        <h2>Наши контакты</h2>
+                        <div class="contact-card"><i class="fas fa-map-marker-alt"></i><div><h3>Адрес</h3><p>г. Алматы, ул. Каныша Сатпаева, 18А</p></div></div>
+                        <div class="contact-card"><i class="fas fa-phone"></i><div><h3>Телефон</h3><p>+7 (727) 123-45-67</p><p>+7 (777) 123-45-67</p></div></div>
+                        <div class="contact-card"><i class="fas fa-envelope"></i><div><h3>Email</h3><p>info@tekno-mir.kz</p><p>sales@tekno-mir.kz</p></div></div>
+                        <div class="contact-card"><i class="fas fa-clock"></i><div><h3>Режим работы</h3><p>Пн-Пт: 10:00 - 20:00</p><p>Сб-Вс: 11:00 - 18:00</p></div></div>
+                    </div>
+                    <div class="contacts-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.8421052631577!2d76.899474!3d43.238442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836e8d33f5bcb1%3A0x8e6f3e5f7d9a6c3d!2z0YPQuy4g0JrQsNC90YvRiNCwINCh0LDRgtC_0LDQtdCy0LAgMTjQkCwg0JDQu9C80LDRgtGLLCDQmtCw0LfQsNGF0YHRgtCw0L0!5e0!3m2!1sru!2skz!4v1700000000000!5m2!1sru!2skz" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    // ============= ЗАПУСК =============
+    async function init() {
+        await loadProducts();
+        await loadFavorites();
+        await loadCart();
+        renderHome();
+    }
+    
+    init();
+</script>
+</body>
+</html>
